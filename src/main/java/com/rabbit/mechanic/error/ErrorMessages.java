@@ -7,6 +7,10 @@ public class ErrorMessages {
 
     public static final String USER_NOT_FOUND = "Can't find any user with the given id";
     public static final String USER_ALREADY_EXISTS = "User with the given email already exists";
+    public static final String FAILED_GETTING_ALL_USERS = "Failed while getting all users from database";
+
+    public static final String CAR_NOT_FOUND = "Can't find any car with the given id";
+    public static final String CAR_ALREADY_EXISTS = "Car with the given plate already exists";
 
     public static final String WRONG_CREDENTIALS = "The credentials inserted are wrong";
 

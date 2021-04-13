@@ -8,8 +8,6 @@ import com.rabbit.mechanic.command.user.CreateUserDto;
 import com.rabbit.mechanic.command.user.UpdateUserDto;
 import com.rabbit.mechanic.command.user.UserDetailsDto;
 
-import java.util.List;
-
 /**
  * Common interface for user services, provides methods to manage users
  */

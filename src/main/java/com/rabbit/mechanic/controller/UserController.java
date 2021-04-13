@@ -14,9 +14,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-import java.awt.print.Pageable;
-import java.util.List;
-
 import static org.springframework.http.HttpStatus.OK;
 
 /**
@@ -41,8 +38,8 @@ public class UserController {
     @PostMapping
     public ResponseEntity<UserDetailsDto> createUser(@Valid @RequestBody CreateUserDto createUserDto) {
 
-        LOGGER.info("Request to create - {} and role {}.", createUserDto, UserRole.CUSTOMER);
-        UserDetailsDto userDetailsDto =  userService.createUser(createUserDto, UserRole.CUSTOMER);
+        LOGGER.info("Request to create - {} and role {}.", createUserDto, UserRole.USER);
+        UserDetailsDto userDetailsDto =  userService.createUser(createUserDto, UserRole.USER);
 
         LOGGER.info("Service retrieved created user {}", userDetailsDto);
         return new ResponseEntity<>(userDetailsDto, HttpStatus.CREATED);

@@ -2,8 +2,6 @@ package com.rabbit.mechanic.command.user;
 
 import lombok.Builder;
 import lombok.Data;
-import org.apache.tomcat.jni.Address;
-import org.springframework.format.annotation.NumberFormat;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -27,9 +25,6 @@ public class CreateUserDto {
     @Email(message = "Email must be valid")
     private String email;
 
-    @NotBlank(message = "Must have password")
-    private String password;
-
     @NotBlank(message = "Must have a cell number")
     private String cellNumber;
 
@@ -41,7 +36,6 @@ public class CreateUserDto {
                 ", address='" + address + '\'' +
                 ", email='" + email + '\'' +
                 ", cellNumber='" + cellNumber + '\'' +
-                ", password='***'" +
                 '}';
     }
 }

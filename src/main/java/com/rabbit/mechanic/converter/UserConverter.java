@@ -1,6 +1,5 @@
 package com.rabbit.mechanic.converter;
 
-
 import com.rabbit.mechanic.command.user.CreateUserDto;
 import com.rabbit.mechanic.command.user.UserDetailsDto;
 import com.rabbit.mechanic.persistence.entity.UserEntity;
@@ -22,7 +21,6 @@ public class UserConverter {
                 .address(createUserDto.getAddress())
                 .email(createUserDto.getEmail())
                 .cellNumber(createUserDto.getCellNumber())
-                .password(createUserDto.getPassword())
                 .build();
     }
 

@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.dom4j.tree.AbstractEntity;
 
 import javax.persistence.*;
 
@@ -18,7 +17,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Entity
 @Table(name = "user")
-public class UserEntity extends AbstractEntity {
+public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,9 +37,6 @@ public class UserEntity extends AbstractEntity {
 
     @Column(nullable = false, length = 9)
     private String cellNumber;
-
-    @Column(nullable = false)
-    private String password;
 
     @Enumerated(EnumType.ORDINAL)
     @Column(nullable = false)

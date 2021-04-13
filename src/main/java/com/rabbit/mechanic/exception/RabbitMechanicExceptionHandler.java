@@ -27,7 +27,8 @@ public class RabbitMechanicExceptionHandler extends ResponseEntityExceptionHandl
      * @return {@link Error}
      */
     @ExceptionHandler(value = {
-            UserNotFoundException.class
+            UserNotFoundException.class,
+            CarNotFoundException.class
     })
     public ResponseEntity<Error> handlerNotFoundException(Exception ex, HttpServletRequest request) {
         return buildErrorResponse(ex, request, HttpStatus.NOT_FOUND);
@@ -41,6 +42,7 @@ public class RabbitMechanicExceptionHandler extends ResponseEntityExceptionHandl
      */
     @ExceptionHandler(value = {
             UserAlreadyExistsException.class,
+            CarAlreadyExistsException.class
             })
     public ResponseEntity<Error> handlerConflictException(Exception ex, HttpServletRequest request) {
         return buildErrorResponse(ex, request, HttpStatus.CONFLICT);

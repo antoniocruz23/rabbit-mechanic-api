@@ -2,7 +2,6 @@ package com.rabbit.mechanic.command.user;
 
 import lombok.Builder;
 import lombok.Data;
-import org.springframework.format.annotation.NumberFormat;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;

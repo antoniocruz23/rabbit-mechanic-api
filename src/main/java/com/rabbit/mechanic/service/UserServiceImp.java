@@ -30,7 +30,6 @@ import java.util.List;
 public class UserServiceImp implements UserService {
 
     private static final Logger LOGGER = LogManager.getLogger(UserService.class);
-
     private final UserRepository userRepository;
 
     public UserServiceImp(UserRepository userRepository) {
@@ -100,7 +99,7 @@ public class UserServiceImp implements UserService {
         try {
             usersList = userRepository.findAll(PageRequest.of(page, size, Sort.by("firstName")));
         } catch (Exception e) {
-            LOGGER.error("Failed while getting all user from database", e);
+            LOGGER.error(ErrorMessages.FAILED_GETTING_ALL_USERS, e);
             throw new DataBaseCommunicationException(ErrorMessages.DATABASE_COMMUNICATION_ERROR, e);
         }
 
@@ -131,7 +130,7 @@ public class UserServiceImp implements UserService {
         // Get user from database
         LOGGER.debug("Getting user with id {} from database", userId);
         UserEntity userEntity = userRepository.findById(userId)
-                .orElseThrow(() ->{
+                .orElseThrow(() -> {
                     LOGGER.error("Failed to get user with {} from database", userId);
                     throw new UserNotFoundException(ErrorMessages.USER_NOT_FOUND);
                 });
@@ -161,7 +160,7 @@ public class UserServiceImp implements UserService {
         // Get user from database
         LOGGER.debug("Getting user with id {} from database", userId);
         UserEntity userEntity = userRepository.findById(userId)
-                .orElseThrow(() ->{
+                .orElseThrow(() -> {
                     LOGGER.error("Failed to get user with {} from database", userId);
                     throw new UserNotFoundException(ErrorMessages.USER_NOT_FOUND);
                 });
