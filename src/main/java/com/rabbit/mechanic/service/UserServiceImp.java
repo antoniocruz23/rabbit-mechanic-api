@@ -7,8 +7,7 @@ import com.rabbit.mechanic.error.ErrorMessages;
 import com.rabbit.mechanic.exception.DataBaseCommunicationException;
 import com.rabbit.mechanic.exception.UserAlreadyExistsException;
 import com.rabbit.mechanic.exception.UserNotFoundException;
-import com.rabbit.mechanic.command.user.CreateUserDto;
-import com.rabbit.mechanic.command.user.UpdateUserDto;
+import com.rabbit.mechanic.command.user.CreateOrUpdateUserDto;
 import com.rabbit.mechanic.command.user.UserDetailsDto;
 import com.rabbit.mechanic.persistence.entity.UserEntity;
 import com.rabbit.mechanic.persistence.repository.UserRepository;
@@ -37,14 +36,14 @@ public class UserServiceImp implements UserService {
     }
 
     /**
-     * @see UserService#createUser(CreateUserDto, UserRole)
+     * @see UserService#createUser(CreateOrUpdateUserDto, UserRole)
      */
     @Override
-    public UserDetailsDto createUser(CreateUserDto userRegistrationDto, UserRole userRole) throws UserAlreadyExistsException {
+    public UserDetailsDto createUser(CreateOrUpdateUserDto createUserDto, UserRole userRole) throws UserAlreadyExistsException {
 
         // Build UserEntity
-        LOGGER.debug("Creating user - {} with role {}", userRegistrationDto, userRole);
-        UserEntity userEntity = UserConverter.fromCreateUserDtoToUserEntity(userRegistrationDto);
+        LOGGER.debug("Creating user - {} with role {}", createUserDto, userRole);
+        UserEntity userEntity = UserConverter.fromCreateUserDtoToUserEntity(createUserDto);
         userEntity.setRole(userRole);
 
         // Persist user into database
@@ -99,7 +98,7 @@ public class UserServiceImp implements UserService {
         try {
             usersList = userRepository.findAll(PageRequest.of(page, size, Sort.by("firstName")));
         } catch (Exception e) {
-            LOGGER.error(ErrorMessages.FAILED_GETTING_ALL_USERS, e);
+            LOGGER.error("Failed while getting all users from database", e);
             throw new DataBaseCommunicationException(ErrorMessages.DATABASE_COMMUNICATION_ERROR, e);
         }
 
@@ -122,10 +121,10 @@ public class UserServiceImp implements UserService {
     }
 
     /**
-     * @see UserService#updateUser(long, UpdateUserDto)
+     * @see UserService#updateUser(long, CreateOrUpdateUserDto)
      */
     @Override
-    public UserDetailsDto updateUser(long userId, UpdateUserDto updateUserDto) {
+    public UserDetailsDto updateUser(long userId, CreateOrUpdateUserDto updateUserDto) {
 
         // Get user from database
         LOGGER.debug("Getting user with id {} from database", userId);

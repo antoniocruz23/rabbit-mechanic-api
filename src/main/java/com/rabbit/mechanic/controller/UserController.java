@@ -2,8 +2,7 @@ package com.rabbit.mechanic.controller;
 
 import com.rabbit.mechanic.command.Paginated;
 import com.rabbit.mechanic.enumerators.UserRole;
-import com.rabbit.mechanic.command.user.CreateUserDto;
-import com.rabbit.mechanic.command.user.UpdateUserDto;
+import com.rabbit.mechanic.command.user.CreateOrUpdateUserDto;
 import com.rabbit.mechanic.command.user.UserDetailsDto;
 import com.rabbit.mechanic.service.UserServiceImp;
 import org.apache.logging.log4j.LogManager;
@@ -32,11 +31,11 @@ public class UserController {
 
     /**
      * Create new User
-     * @param createUserDto {@link CreateUserDto}
+     * @param createUserDto {@link CreateOrUpdateUserDto}
      * @return {@link UserDetailsDto} user created and Created httpStatus
      */
     @PostMapping
-    public ResponseEntity<UserDetailsDto> createUser(@Valid @RequestBody CreateUserDto createUserDto) {
+    public ResponseEntity<UserDetailsDto> createUser(@Valid @RequestBody CreateOrUpdateUserDto createUserDto) {
 
         LOGGER.info("Request to create - {} and role {}.", createUserDto, UserRole.CUSTOMER);
         UserDetailsDto userDetailsDto =  userService.createUser(createUserDto, UserRole.CUSTOMER);
@@ -78,12 +77,12 @@ public class UserController {
     /**
      * Update User
      * @param userId user id we want to update
-     * @param updateUserDto {@link UpdateUserDto}
+     * @param updateUserDto {@link CreateOrUpdateUserDto}
      * @return {@link UserDetailsDto} user updated and Ok httpStatus
      */
     @PutMapping("/{userId}")
     public ResponseEntity<UserDetailsDto> updateUser(@PathVariable long userId,
-                                                     @Valid @RequestBody UpdateUserDto updateUserDto) {
+                                                     @Valid @RequestBody CreateOrUpdateUserDto updateUserDto) {
 
         LOGGER.info("Request to update user with id {}", userId);
         UserDetailsDto userDetailsDto = userService.updateUser(userId, updateUserDto);

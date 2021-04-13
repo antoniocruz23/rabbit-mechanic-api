@@ -9,7 +9,6 @@ import com.rabbit.mechanic.persistence.entity.CarEntity;
  */
 public class CarConverter {
 
-
     /**
      * From {@link CreateOrUpdateCarDto} to {@link CarEntity}
      * @param createOrUpdateCarDto {@link CreateOrUpdateCarDto}
@@ -31,6 +30,7 @@ public class CarConverter {
     public static CarDetailsDto fromCarEntityToCarDetailsDto(CarEntity carEntity) {
         return CarDetailsDto.builder()
                 .carId(carEntity.getCarId())
+                .userId(carEntity.getUserEntity().getUserId())
                 .brand(carEntity.getBrand())
                 .engineType(carEntity.getEngineType())
                 .plate(carEntity.getPlate())

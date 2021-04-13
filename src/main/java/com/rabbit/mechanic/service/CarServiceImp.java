@@ -8,8 +8,11 @@ import com.rabbit.mechanic.error.ErrorMessages;
 import com.rabbit.mechanic.exception.CarAlreadyExistsException;
 import com.rabbit.mechanic.exception.CarNotFoundException;
 import com.rabbit.mechanic.exception.DataBaseCommunicationException;
+import com.rabbit.mechanic.exception.UserNotFoundException;
 import com.rabbit.mechanic.persistence.entity.CarEntity;
+import com.rabbit.mechanic.persistence.entity.UserEntity;
 import com.rabbit.mechanic.persistence.repository.CarRepository;
+import com.rabbit.mechanic.persistence.repository.UserRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -29,20 +32,32 @@ public class CarServiceImp implements CarService {
 
     private static final Logger LOGGER = LogManager.getLogger(UserService.class);
     private final CarRepository carRepository;
+    private final UserRepository userRepository;
 
-    public CarServiceImp(CarRepository carRepository) {
+    public CarServiceImp(CarRepository carRepository, UserRepository userRepository) {
         this.carRepository = carRepository;
+        this.userRepository = userRepository;
     }
 
     /**
      * @see CarService#addNewCar(CreateOrUpdateCarDto)
      */
     @Override
-    public CarDetailsDto addNewCar(CreateOrUpdateCarDto carDetails) throws CarAlreadyExistsException {
+    public CarDetailsDto addNewCar(CreateOrUpdateCarDto createOrUpdateCarDto) throws CarAlreadyExistsException {
 
         // Build Car Entity
-        LOGGER.debug("Creating car - {}", carDetails);
-        CarEntity carEntity = CarConverter.fromCreateOrUpdateCarDtoToCarEntity(carDetails);
+        LOGGER.debug("Creating car - {}", createOrUpdateCarDto);
+        CarEntity carEntity = CarConverter.fromCreateOrUpdateCarDtoToCarEntity(createOrUpdateCarDto);
+
+        // Get user from database
+        LOGGER.debug("Getting user with id {} from database", createOrUpdateCarDto.getUserId());
+        UserEntity userEntity = userRepository.findById(createOrUpdateCarDto.getUserId())
+                .orElseThrow(() -> {
+                    LOGGER.error("Failed to get user with {} from database", createOrUpdateCarDto.getUserId());
+                    throw new UserNotFoundException(ErrorMessages.USER_NOT_FOUND);
+                });
+
+        carEntity.setUserEntity(userEntity);
 
         // Persist car into database
         LOGGER.info("Persisting car into database");

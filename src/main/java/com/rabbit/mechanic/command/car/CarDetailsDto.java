@@ -12,6 +12,7 @@ import lombok.Data;
 public class CarDetailsDto {
 
     private long carId;
+    private long userId;
     private CarBrands brand;
     private String engineType;
     private String plate;

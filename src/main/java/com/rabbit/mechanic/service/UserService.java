@@ -4,8 +4,7 @@ import com.rabbit.mechanic.command.Paginated;
 import com.rabbit.mechanic.enumerators.UserRole;
 import com.rabbit.mechanic.exception.UserAlreadyExistsException;
 import com.rabbit.mechanic.exception.UserNotFoundException;
-import com.rabbit.mechanic.command.user.CreateUserDto;
-import com.rabbit.mechanic.command.user.UpdateUserDto;
+import com.rabbit.mechanic.command.user.CreateOrUpdateUserDto;
 import com.rabbit.mechanic.command.user.UserDetailsDto;
 
 /**
@@ -15,12 +14,12 @@ public interface UserService {
 
     /**
      * Create new user
-     * @param userRegistrationDto {@link CreateUserDto}
+     * @param createUserDto {@link CreateOrUpdateUserDto}
      * @param userRole {@link UserRole}
      * @return {@link UserDetailsDto} the user created
      * @throws UserAlreadyExistsException when the user already exists
      */
-    UserDetailsDto createUser(CreateUserDto userRegistrationDto, UserRole userRole) throws UserAlreadyExistsException;
+    UserDetailsDto createUser(CreateOrUpdateUserDto createUserDto, UserRole userRole) throws UserAlreadyExistsException;
 
     /**
      * Get user by id
@@ -39,11 +38,11 @@ public interface UserService {
     /**
      * Update User
      * @param userId user id we want to update
-     * @param updateUserDto {@link UpdateUserDto}
+     * @param updateUserDto {@link CreateOrUpdateUserDto}
      * @return {@link UserDetailsDto} the user updated
      * @throws UserNotFoundException when the user aren't found
      */
-    UserDetailsDto updateUser(long userId, UpdateUserDto updateUserDto) throws UserNotFoundException;
+    UserDetailsDto updateUser(long userId, CreateOrUpdateUserDto updateUserDto) throws UserNotFoundException;
 
     /**
      * Delete user

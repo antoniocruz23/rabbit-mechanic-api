@@ -24,6 +24,10 @@ public class CarEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long carId;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "userId", nullable = false)
+    private UserEntity userEntity;
+
     @Enumerated(EnumType.ORDINAL)
     @Column(nullable = false)
     private CarBrands brand;
@@ -33,7 +37,4 @@ public class CarEntity {
 
     @Column(nullable = false, length = 8, unique = true)
     private String plate;
-
-    @OneToMany(mappedBy = "carEntity")
-    private List<UserEntity> rents;
 }

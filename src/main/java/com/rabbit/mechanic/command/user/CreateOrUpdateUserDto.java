@@ -7,11 +7,11 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 /**
- * CreateUserDto used to store user info when updated
+ * CreateOrUpdateUserDto used to store user info when creating or updating users
  */
 @Data
 @Builder
-public class UpdateUserDto {
+public class CreateOrUpdateUserDto {
 
     @NotBlank(message = "Must have first name")
     private String firstName;
@@ -25,6 +25,6 @@ public class UpdateUserDto {
     @Email(message = "Email must be valid")
     private String email;
 
-    @NotBlank(message = "Must have cell number")
+    @NotBlank(message = "Must have a cell number")
     private String cellNumber;
 }

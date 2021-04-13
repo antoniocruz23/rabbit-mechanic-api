@@ -1,6 +1,6 @@
 package com.rabbit.mechanic.converter;
 
-import com.rabbit.mechanic.command.user.CreateUserDto;
+import com.rabbit.mechanic.command.user.CreateOrUpdateUserDto;
 import com.rabbit.mechanic.command.user.UserDetailsDto;
 import com.rabbit.mechanic.persistence.entity.UserEntity;
 
@@ -10,17 +10,17 @@ import com.rabbit.mechanic.persistence.entity.UserEntity;
 public class UserConverter {
 
     /**
-     * From {@link CreateUserDto} to {@link UserEntity}
-     * @param createUserDto {@link CreateUserDto}
+     * From {@link CreateOrUpdateUserDto} to {@link UserEntity}
+     * @param createOrUpdateUserDto {@link CreateOrUpdateUserDto}
      * @return {@link UserEntity}
      */
-    public static UserEntity fromCreateUserDtoToUserEntity(CreateUserDto createUserDto) {
+    public static UserEntity fromCreateUserDtoToUserEntity(CreateOrUpdateUserDto createOrUpdateUserDto) {
         return UserEntity.builder()
-                .firstName(createUserDto.getFirstName())
-                .lastName(createUserDto.getLastName())
-                .address(createUserDto.getAddress())
-                .email(createUserDto.getEmail())
-                .cellNumber(createUserDto.getCellNumber())
+                .firstName(createOrUpdateUserDto.getFirstName())
+                .lastName(createOrUpdateUserDto.getLastName())
+                .address(createOrUpdateUserDto.getAddress())
+                .email(createOrUpdateUserDto.getEmail())
+                .cellNumber(createOrUpdateUserDto.getCellNumber())
                 .build();
     }
 

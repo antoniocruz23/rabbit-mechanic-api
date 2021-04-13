@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * The user entity
@@ -38,11 +39,10 @@ public class UserEntity {
     @Column(nullable = false, length = 9)
     private String cellNumber;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "carId", nullable = false)
-    private CarEntity carEntity;
-
     @Enumerated(EnumType.ORDINAL)
     @Column(nullable = false)
     private UserRole role;
+
+    @OneToMany(mappedBy = "userEntity")
+    private List<CarEntity> cars;
 }
