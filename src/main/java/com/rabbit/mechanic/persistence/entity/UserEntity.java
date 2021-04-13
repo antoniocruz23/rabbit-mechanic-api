@@ -38,6 +38,10 @@ public class UserEntity {
     @Column(nullable = false, length = 9)
     private String cellNumber;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "carId", nullable = false)
+    private CarEntity carEntity;
+
     @Enumerated(EnumType.ORDINAL)
     @Column(nullable = false)
     private UserRole role;

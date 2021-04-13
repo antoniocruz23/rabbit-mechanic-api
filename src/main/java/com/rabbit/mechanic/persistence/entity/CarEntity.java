@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * The car entity
@@ -32,4 +33,7 @@ public class CarEntity {
 
     @Column(nullable = false, length = 8, unique = true)
     private String plate;
+
+    @OneToMany(mappedBy = "carEntity")
+    private List<UserEntity> rents;
 }

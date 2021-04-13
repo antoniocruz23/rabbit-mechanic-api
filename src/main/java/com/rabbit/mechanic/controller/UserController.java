@@ -38,8 +38,8 @@ public class UserController {
     @PostMapping
     public ResponseEntity<UserDetailsDto> createUser(@Valid @RequestBody CreateUserDto createUserDto) {
 
-        LOGGER.info("Request to create - {} and role {}.", createUserDto, UserRole.USER);
-        UserDetailsDto userDetailsDto =  userService.createUser(createUserDto, UserRole.USER);
+        LOGGER.info("Request to create - {} and role {}.", createUserDto, UserRole.CUSTOMER);
+        UserDetailsDto userDetailsDto =  userService.createUser(createUserDto, UserRole.CUSTOMER);
 
         LOGGER.info("Service retrieved created user {}", userDetailsDto);
         return new ResponseEntity<>(userDetailsDto, HttpStatus.CREATED);
