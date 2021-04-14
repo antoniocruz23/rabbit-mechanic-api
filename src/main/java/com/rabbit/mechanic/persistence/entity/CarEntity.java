@@ -7,7 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 
 /**
  * The car entity
@@ -25,8 +24,8 @@ public class CarEntity {
     private long carId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "userId", nullable = false)
-    private UserEntity userEntity;
+    @JoinColumn(name = "customerId", nullable = false)
+    private CustomerEntity customerEntity;
 
     @Enumerated(EnumType.ORDINAL)
     @Column(nullable = false)
@@ -37,4 +36,7 @@ public class CarEntity {
 
     @Column(nullable = false, length = 8, unique = true)
     private String plate;
+
+    @OneToOne(mappedBy = "carEntity")
+    private RepairEntity repairs;
 }

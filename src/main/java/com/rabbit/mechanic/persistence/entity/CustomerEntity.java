@@ -1,6 +1,5 @@
 package com.rabbit.mechanic.persistence.entity;
 
-import com.rabbit.mechanic.enumerators.UserRole;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,19 +9,19 @@ import javax.persistence.*;
 import java.util.List;
 
 /**
- * The user entity
+ * The customer entity
  */
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "user")
-public class UserEntity {
+@Table(name = "customers")
+public class CustomerEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long userId;
+    private long customerId;
 
     @Column(nullable = false, length = 100)
     private String firstName;
@@ -39,10 +38,6 @@ public class UserEntity {
     @Column(nullable = false, length = 9)
     private String cellNumber;
 
-    @Enumerated(EnumType.ORDINAL)
-    @Column(nullable = false)
-    private UserRole role;
-
-    @OneToMany(mappedBy = "userEntity")
+    @OneToMany(mappedBy = "customerEntity")
     private List<CarEntity> cars;
 }

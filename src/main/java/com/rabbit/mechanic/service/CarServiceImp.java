@@ -5,14 +5,11 @@ import com.rabbit.mechanic.command.car.CarDetailsDto;
 import com.rabbit.mechanic.command.car.CreateOrUpdateCarDto;
 import com.rabbit.mechanic.converter.CarConverter;
 import com.rabbit.mechanic.error.ErrorMessages;
-import com.rabbit.mechanic.exception.CarAlreadyExistsException;
-import com.rabbit.mechanic.exception.CarNotFoundException;
-import com.rabbit.mechanic.exception.DataBaseCommunicationException;
-import com.rabbit.mechanic.exception.UserNotFoundException;
+import com.rabbit.mechanic.exception.*;
 import com.rabbit.mechanic.persistence.entity.CarEntity;
-import com.rabbit.mechanic.persistence.entity.UserEntity;
+import com.rabbit.mechanic.persistence.entity.CustomerEntity;
 import com.rabbit.mechanic.persistence.repository.CarRepository;
-import com.rabbit.mechanic.persistence.repository.UserRepository;
+import com.rabbit.mechanic.persistence.repository.CustomerRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -30,34 +27,34 @@ import java.util.List;
 @Service
 public class CarServiceImp implements CarService {
 
-    private static final Logger LOGGER = LogManager.getLogger(UserService.class);
+    private static final Logger LOGGER = LogManager.getLogger(CustomerService.class);
     private final CarRepository carRepository;
-    private final UserRepository userRepository;
+    private final CustomerRepository customerRepository;
 
-    public CarServiceImp(CarRepository carRepository, UserRepository userRepository) {
+    public CarServiceImp(CarRepository carRepository, CustomerRepository customerRepository) {
         this.carRepository = carRepository;
-        this.userRepository = userRepository;
+        this.customerRepository = customerRepository;
     }
 
     /**
      * @see CarService#addNewCar(CreateOrUpdateCarDto)
      */
     @Override
-    public CarDetailsDto addNewCar(CreateOrUpdateCarDto createOrUpdateCarDto) throws CarAlreadyExistsException {
+    public CarDetailsDto addNewCar(CreateOrUpdateCarDto createCarDto) throws CarAlreadyExistsException {
 
         // Build Car Entity
-        LOGGER.debug("Creating car - {}", createOrUpdateCarDto);
-        CarEntity carEntity = CarConverter.fromCreateOrUpdateCarDtoToCarEntity(createOrUpdateCarDto);
+        LOGGER.debug("Creating car - {}", createCarDto);
+        CarEntity carEntity = CarConverter.fromCreateOrUpdateCarDtoToCarEntity(createCarDto);
 
         // Get user from database
-        LOGGER.debug("Getting user with id {} from database", createOrUpdateCarDto.getUserId());
-        UserEntity userEntity = userRepository.findById(createOrUpdateCarDto.getUserId())
+        LOGGER.debug("Getting user with id {} from database", createCarDto.getUserId());
+        CustomerEntity customerEntity = customerRepository.findById(createCarDto.getUserId())
                 .orElseThrow(() -> {
-                    LOGGER.error("Failed to get user with {} from database", createOrUpdateCarDto.getUserId());
-                    throw new UserNotFoundException(ErrorMessages.USER_NOT_FOUND);
+                    LOGGER.error("Failed to get user with {} from database", createCarDto.getUserId());
+                    throw new UserNotFoundException(ErrorMessages.CUSTOMER_NOT_FOUND);
                 });
 
-        carEntity.setUserEntity(userEntity);
+        carEntity.setCustomerEntity(customerEntity);
 
         // Persist car into database
         LOGGER.info("Persisting car into database");
@@ -93,16 +90,16 @@ public class CarServiceImp implements CarService {
                     throw new CarNotFoundException(ErrorMessages.CAR_NOT_FOUND);
                 });
 
-        // Convert to CarDetailsDto and return
+        // Convert to CarDetailsDto and return car
         LOGGER.debug("Retrieving got car");
         return CarConverter.fromCarEntityToCarDetailsDto(carEntity);
     }
 
     /**
-     * @see CarService#getAllCars(int, int)
+     * @see CarService#getCarsList(int, int)
      */
     @Override
-    public Paginated<CarDetailsDto> getAllCars(int page, int size) {
+    public Paginated<CarDetailsDto> getCarsList(int page, int size) {
 
         // Get all cars from database
         LOGGER.debug("Getting all cars from database");
@@ -122,7 +119,7 @@ public class CarServiceImp implements CarService {
             carsListResponse.add(CarConverter.fromCarEntityToCarDetailsDto(carEntity));
         }
 
-        //Build custom paginated object
+        // Build custom paginated object
         Paginated<CarDetailsDto> results = new Paginated<>(
                 carsListResponse,
                 page,

@@ -7,11 +7,11 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 /**
- * CreateOrUpdateUserDto used to store user info when creating or updating users
+ * CreateOrUpdateCustomerDto used to store Customer info when creating or updating Customers
  */
 @Data
 @Builder
-public class CreateOrUpdateUserDto {
+public class CreateOrUpdateCustomerDto {
 
     @NotBlank(message = "Must have first name")
     private String firstName;

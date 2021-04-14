@@ -4,13 +4,13 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- * UserDetailsDto used to respond with user details
+ * CustomerDetailsDto used to respond with Customer details
  */
 @Data
 @Builder
-public class UserDetailsDto {
+public class CustomerDetailsDto {
 
-    private long userId;
+    private long customerId;
     private String firstName;
     private String lastName;
     private String address;

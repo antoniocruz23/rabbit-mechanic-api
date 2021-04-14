@@ -30,7 +30,7 @@ public class CarConverter {
     public static CarDetailsDto fromCarEntityToCarDetailsDto(CarEntity carEntity) {
         return CarDetailsDto.builder()
                 .carId(carEntity.getCarId())
-                .userId(carEntity.getUserEntity().getUserId())
+                .userId(carEntity.getCustomerEntity().getCustomerId())
                 .brand(carEntity.getBrand())
                 .engineType(carEntity.getEngineType())
                 .plate(carEntity.getPlate())
