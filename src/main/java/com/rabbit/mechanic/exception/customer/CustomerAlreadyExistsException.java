@@ -1,4 +1,4 @@
-package com.rabbit.mechanic.exception;
+package com.rabbit.mechanic.exception.customer;
 
 /**
  * Customer Already Exists Exception

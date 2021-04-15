@@ -1,4 +1,4 @@
-package com.rabbit.mechanic.exception;
+package com.rabbit.mechanic.exception.car;
 
 /**
  * Car Not Found Exception

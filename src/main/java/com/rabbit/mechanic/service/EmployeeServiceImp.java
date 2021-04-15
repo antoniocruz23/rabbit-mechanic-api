@@ -1,16 +1,15 @@
 package com.rabbit.mechanic.service;
 
 import com.rabbit.mechanic.command.Paginated;
-import com.rabbit.mechanic.command.customer.CreateOrUpdateCustomerDto;
-import com.rabbit.mechanic.command.customer.CustomerDetailsDto;
 import com.rabbit.mechanic.command.employee.CreateEmployeeDto;
 import com.rabbit.mechanic.command.employee.EmployeeDetailsDto;
 import com.rabbit.mechanic.command.employee.UpdateEmployeeDto;
-import com.rabbit.mechanic.converter.CustomerConverter;
 import com.rabbit.mechanic.converter.EmployeeConverter;
 import com.rabbit.mechanic.error.ErrorMessages;
 import com.rabbit.mechanic.exception.*;
-import com.rabbit.mechanic.persistence.entity.CustomerEntity;
+import com.rabbit.mechanic.exception.customer.CustomerNotFoundException;
+import com.rabbit.mechanic.exception.employee.EmployeeAlreadyExistsException;
+import com.rabbit.mechanic.exception.employee.EmployeeNotFoundException;
 import com.rabbit.mechanic.persistence.entity.EmployeeEntity;
 import com.rabbit.mechanic.persistence.repository.EmployeeRepository;
 import org.apache.logging.log4j.LogManager;

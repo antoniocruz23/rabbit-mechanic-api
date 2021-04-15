@@ -3,8 +3,8 @@ package com.rabbit.mechanic.service;
 import com.rabbit.mechanic.command.Paginated;
 import com.rabbit.mechanic.command.repair.CreateOrUpdateRepairDto;
 import com.rabbit.mechanic.command.repair.RepairDetailsDto;
-import com.rabbit.mechanic.exception.RepairAlreadyExistsException;
-import com.rabbit.mechanic.exception.RepairNotFoundException;
+import com.rabbit.mechanic.exception.repair.RepairAlreadyExistsException;
+import com.rabbit.mechanic.exception.repair.RepairNotFoundException;
 
 /**
  * Common interface for repair services, provides methods to manage repairs

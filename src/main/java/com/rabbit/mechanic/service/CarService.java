@@ -3,8 +3,8 @@ package com.rabbit.mechanic.service;
 import com.rabbit.mechanic.command.Paginated;
 import com.rabbit.mechanic.command.car.CarDetailsDto;
 import com.rabbit.mechanic.command.car.CreateOrUpdateCarDto;
-import com.rabbit.mechanic.exception.CarAlreadyExistsException;
-import com.rabbit.mechanic.exception.CarNotFoundException;
+import com.rabbit.mechanic.exception.car.CarAlreadyExistsException;
+import com.rabbit.mechanic.exception.car.CarNotFoundException;
 
 /**
  * Common interface for car services, provides methods to manage cars
@@ -17,7 +17,7 @@ public interface CarService {
      * @return {@link CarDetailsDto} the car created
      * @throws CarAlreadyExistsException when the car already exists
      */
-    CarDetailsDto addNewCar(CreateOrUpdateCarDto createCarDto) throws CarAlreadyExistsException;
+    CarDetailsDto createCar(CreateOrUpdateCarDto createCarDto) throws CarAlreadyExistsException;
 
     /**
      * Get car by id

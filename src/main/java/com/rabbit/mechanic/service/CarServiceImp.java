@@ -6,6 +6,9 @@ import com.rabbit.mechanic.command.car.CreateOrUpdateCarDto;
 import com.rabbit.mechanic.converter.CarConverter;
 import com.rabbit.mechanic.error.ErrorMessages;
 import com.rabbit.mechanic.exception.*;
+import com.rabbit.mechanic.exception.car.CarAlreadyExistsException;
+import com.rabbit.mechanic.exception.car.CarNotFoundException;
+import com.rabbit.mechanic.exception.customer.CustomerNotFoundException;
 import com.rabbit.mechanic.persistence.entity.CarEntity;
 import com.rabbit.mechanic.persistence.entity.CustomerEntity;
 import com.rabbit.mechanic.persistence.repository.CarRepository;
@@ -37,10 +40,10 @@ public class CarServiceImp implements CarService {
     }
 
     /**
-     * @see CarService#addNewCar(CreateOrUpdateCarDto)
+     * @see CarService#createCar(CreateOrUpdateCarDto)
      */
     @Override
-    public CarDetailsDto addNewCar(CreateOrUpdateCarDto createCarDto) throws CarAlreadyExistsException {
+    public CarDetailsDto createCar(CreateOrUpdateCarDto createCarDto) throws CarAlreadyExistsException {
 
         // Build Car Entity
         LOGGER.debug("Creating car - {}", createCarDto);

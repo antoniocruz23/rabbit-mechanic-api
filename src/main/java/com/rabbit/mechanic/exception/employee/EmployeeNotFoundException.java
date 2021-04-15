@@ -1,7 +1,7 @@
-package com.rabbit.mechanic.exception;
+package com.rabbit.mechanic.exception.employee;
 
 /**
- * Worker Not Found Exception
+ * Employee Not Found Exception
  */
 public class EmployeeNotFoundException extends RuntimeException {
     public EmployeeNotFoundException(String message) {

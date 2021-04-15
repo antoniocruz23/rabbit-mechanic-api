@@ -4,10 +4,8 @@ import com.rabbit.mechanic.command.Paginated;
 import com.rabbit.mechanic.command.employee.CreateEmployeeDto;
 import com.rabbit.mechanic.command.employee.EmployeeDetailsDto;
 import com.rabbit.mechanic.command.employee.UpdateEmployeeDto;
-import com.rabbit.mechanic.exception.EmployeeAlreadyExistsException;
-import com.rabbit.mechanic.exception.EmployeeNotFoundException;
-
-import java.util.List;
+import com.rabbit.mechanic.exception.employee.EmployeeAlreadyExistsException;
+import com.rabbit.mechanic.exception.employee.EmployeeNotFoundException;
 
 /**
  * Common interface for employee services, provides methods to manage employees

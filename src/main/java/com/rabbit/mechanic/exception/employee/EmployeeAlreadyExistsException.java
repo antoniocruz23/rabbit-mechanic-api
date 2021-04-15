@@ -1,7 +1,7 @@
-package com.rabbit.mechanic.exception;
+package com.rabbit.mechanic.exception.employee;
 
 /**
- * Worker already exists exception
+ * Employee already exists exception
  */
 public class EmployeeAlreadyExistsException extends RuntimeException {
     public EmployeeAlreadyExistsException(String message) {

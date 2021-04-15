@@ -1,6 +1,14 @@
 package com.rabbit.mechanic.exception;
 
 import com.rabbit.mechanic.error.Error;
+import com.rabbit.mechanic.exception.car.CarAlreadyExistsException;
+import com.rabbit.mechanic.exception.car.CarNotFoundException;
+import com.rabbit.mechanic.exception.customer.CustomerAlreadyExistsException;
+import com.rabbit.mechanic.exception.customer.CustomerNotFoundException;
+import com.rabbit.mechanic.exception.employee.EmployeeAlreadyExistsException;
+import com.rabbit.mechanic.exception.employee.EmployeeNotFoundException;
+import com.rabbit.mechanic.exception.repair.RepairAlreadyExistsException;
+import com.rabbit.mechanic.exception.repair.RepairNotFoundException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

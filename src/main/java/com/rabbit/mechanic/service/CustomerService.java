@@ -2,8 +2,8 @@ package com.rabbit.mechanic.service;
 
 import com.rabbit.mechanic.command.Paginated;
 import com.rabbit.mechanic.command.customer.CreateOrUpdateCustomerDto;
-import com.rabbit.mechanic.exception.CustomerAlreadyExistsException;
-import com.rabbit.mechanic.exception.CustomerNotFoundException;
+import com.rabbit.mechanic.exception.customer.CustomerAlreadyExistsException;
+import com.rabbit.mechanic.exception.customer.CustomerNotFoundException;
 import com.rabbit.mechanic.command.customer.CustomerDetailsDto;
 
 /**

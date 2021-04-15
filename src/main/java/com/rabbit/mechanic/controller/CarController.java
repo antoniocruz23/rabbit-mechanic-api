@@ -40,7 +40,7 @@ public class CarController {
         LOGGER.info("Request to create - {}.", createCarDto);
         CarDetailsDto carDetails;
         try {
-            carDetails = carService.addNewCar(createCarDto);
+            carDetails = carService.createCar(createCarDto);
         } catch (RabbitMechanicException e) {
             // Since RabbitMechanicException exceptions are thrown by us, we just throw them
             throw e;
