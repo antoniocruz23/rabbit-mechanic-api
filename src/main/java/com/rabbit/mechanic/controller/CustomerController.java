@@ -1,8 +1,8 @@
 package com.rabbit.mechanic.controller;
 
 import com.rabbit.mechanic.command.Paginated;
-import com.rabbit.mechanic.command.user.CreateOrUpdateCustomerDto;
-import com.rabbit.mechanic.command.user.CustomerDetailsDto;
+import com.rabbit.mechanic.command.customer.CreateOrUpdateCustomerDto;
+import com.rabbit.mechanic.command.customer.CustomerDetailsDto;
 import com.rabbit.mechanic.error.ErrorMessages;
 import com.rabbit.mechanic.exception.RabbitMechanicException;
 import com.rabbit.mechanic.service.CustomerServiceImp;

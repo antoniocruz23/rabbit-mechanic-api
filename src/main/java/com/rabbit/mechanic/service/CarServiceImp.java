@@ -51,7 +51,7 @@ public class CarServiceImp implements CarService {
         CustomerEntity customerEntity = customerRepository.findById(createCarDto.getUserId())
                 .orElseThrow(() -> {
                     LOGGER.error("Failed to get user with {} from database", createCarDto.getUserId());
-                    throw new UserNotFoundException(ErrorMessages.CUSTOMER_NOT_FOUND);
+                    throw new CustomerNotFoundException(ErrorMessages.CUSTOMER_NOT_FOUND);
                 });
 
         carEntity.setCustomerEntity(customerEntity);

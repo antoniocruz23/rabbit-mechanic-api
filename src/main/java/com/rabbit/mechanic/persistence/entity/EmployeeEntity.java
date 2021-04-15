@@ -1,27 +1,28 @@
 package com.rabbit.mechanic.persistence.entity;
 
+import com.rabbit.mechanic.enumerators.EmployeeRoles;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
+import javax.print.attribute.standard.RequestingUserName;
 
 /**
- * The customer entity
+ * The employee entity
  */
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "customers")
-public class CustomerEntity extends AbstractEntity {
+@Table(name = "employees")
+public class EmployeeEntity extends AbstractEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long customerId;
+    private long employeeId;
 
     @Column(nullable = false, length = 100)
     private String firstName;
@@ -29,15 +30,13 @@ public class CustomerEntity extends AbstractEntity {
     @Column(nullable = false)
     private String lastName;
 
-    @Column(nullable = false)
-    private String address;
-
     @Column(nullable = false, unique = true)
-    private String email;
+    private String username;
 
-    @Column(nullable = false, length = 9)
-    private String cellNumber;
+    @Column(nullable = false)
+    private String password;
 
-    @OneToMany(mappedBy = "customerEntity")
-    private List<CarEntity> cars;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private EmployeeRoles role;
 }

@@ -1,9 +1,9 @@
 package com.rabbit.mechanic.enumerators;
 
 /**
- * An enumerator for users roles
+ * An enumerator for employees roles
  */
-public enum UserRole {
+public enum EmployeeRoles {
     ADMIN,
     MECHANIC,
     RECEPTIONIST

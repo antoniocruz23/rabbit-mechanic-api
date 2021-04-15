@@ -1,13 +1,13 @@
 package com.rabbit.mechanic.service;
 
 import com.rabbit.mechanic.command.Paginated;
-import com.rabbit.mechanic.command.user.CreateOrUpdateCustomerDto;
+import com.rabbit.mechanic.command.customer.CreateOrUpdateCustomerDto;
 import com.rabbit.mechanic.converter.CustomerConverter;
 import com.rabbit.mechanic.error.ErrorMessages;
+import com.rabbit.mechanic.exception.CustomerNotFoundException;
 import com.rabbit.mechanic.exception.DataBaseCommunicationException;
-import com.rabbit.mechanic.exception.UserAlreadyExistsException;
-import com.rabbit.mechanic.exception.UserNotFoundException;
-import com.rabbit.mechanic.command.user.CustomerDetailsDto;
+import com.rabbit.mechanic.exception.CustomerAlreadyExistsException;
+import com.rabbit.mechanic.command.customer.CustomerDetailsDto;
 import com.rabbit.mechanic.persistence.entity.CustomerEntity;
 import com.rabbit.mechanic.persistence.repository.CustomerRepository;
 import org.apache.logging.log4j.LogManager;
@@ -27,6 +27,7 @@ import java.util.List;
 @Service
 public class CustomerServiceImp implements CustomerService {
 
+    // Logger
     private static final Logger LOGGER = LogManager.getLogger(CustomerService.class);
     private final CustomerRepository customerRepository;
 
@@ -38,29 +39,29 @@ public class CustomerServiceImp implements CustomerService {
      * @see CustomerService#createCustomer(CreateOrUpdateCustomerDto)
      */
     @Override
-    public CustomerDetailsDto createCustomer(CreateOrUpdateCustomerDto createUserDto) throws UserAlreadyExistsException {
+    public CustomerDetailsDto createCustomer(CreateOrUpdateCustomerDto createUserDto) throws CustomerAlreadyExistsException {
 
         // Build CustomerEntity
-        LOGGER.debug("Creating user - {}", createUserDto);
+        LOGGER.debug("Creating customer - {}", createUserDto);
         CustomerEntity customerEntity = CustomerConverter.fromCreateOrUpdateCustomerDtoToCustomerEntity(createUserDto);
 
         // Persist user into database
-        LOGGER.info("Persisting user into database");
+        LOGGER.info("Persisting customer into database");
         try {
-            LOGGER.info("Saving user on database");
+            LOGGER.info("Saving customer on database");
             customerRepository.save(customerEntity);
 
         } catch (DataIntegrityViolationException sqlException) {
             LOGGER.error("Duplicated email - {}", customerEntity, sqlException);
-            throw new UserAlreadyExistsException(ErrorMessages.CUSTOMER_ALREADY_EXISTS);
+            throw new CustomerAlreadyExistsException(ErrorMessages.CUSTOMER_ALREADY_EXISTS);
 
         } catch (Exception e) {
-            LOGGER.error("Failed while saving user into database {}", customerEntity, e);
+            LOGGER.error("Failed while saving customer into database {}", customerEntity, e);
             throw new DataBaseCommunicationException(ErrorMessages.DATABASE_COMMUNICATION_ERROR, e);
         }
 
         // Build CustomerDetailsDto to return to the client
-        LOGGER.debug("Retrieving created user");
+        LOGGER.debug("Retrieving created customer");
         return CustomerConverter.fromCustomerEntityToCustomerDetailsDto(customerEntity);
     }
 
@@ -68,18 +69,18 @@ public class CustomerServiceImp implements CustomerService {
      * @see CustomerService#getCustomerById(long)
      */
     @Override
-    public CustomerDetailsDto getCustomerById(long userId) {
+    public CustomerDetailsDto getCustomerById(long customerId) {
 
         // Get user from database
-        LOGGER.debug("Getting user with id {} from database", userId);
-        CustomerEntity customerEntity = customerRepository.findById(userId)
+        LOGGER.debug("Getting customer with id {} from database", customerId);
+        CustomerEntity customerEntity = customerRepository.findById(customerId)
                 .orElseThrow(() -> {
-                    LOGGER.error("Failed to get user with {} from database", userId);
-                    throw new UserNotFoundException(ErrorMessages.CUSTOMER_NOT_FOUND);
+                    LOGGER.error("Failed to get customer with {} from database", customerId);
+                    throw new CustomerNotFoundException(ErrorMessages.CUSTOMER_NOT_FOUND);
                 });
 
         // Convert CustomerDetailsDto to return to the client
-        LOGGER.debug("Retrieving got user");
+        LOGGER.debug("Retrieving got customer");
         return CustomerConverter.fromCustomerEntityToCustomerDetailsDto(customerEntity);
     }
 
@@ -90,13 +91,13 @@ public class CustomerServiceImp implements CustomerService {
     public Paginated<CustomerDetailsDto> getCustomerList(int page, int size) {
 
         // Get all users from database
-        LOGGER.debug("Getting all users from database");
+        LOGGER.debug("Getting all customers from database");
         Page<CustomerEntity> usersList = null;
 
         try {
             usersList = customerRepository.findAll(PageRequest.of(page, size, Sort.by("firstName")));
         } catch (Exception e) {
-            LOGGER.error("Failed while getting all users from database", e);
+            LOGGER.error("Failed while getting all customers from database", e);
             throw new DataBaseCommunicationException(ErrorMessages.DATABASE_COMMUNICATION_ERROR, e);
         }
 
@@ -122,14 +123,14 @@ public class CustomerServiceImp implements CustomerService {
      * @see CustomerService#updateCustomer(long, CreateOrUpdateCustomerDto)
      */
     @Override
-    public CustomerDetailsDto updateCustomer(long userId, CreateOrUpdateCustomerDto updateUserDto) {
+    public CustomerDetailsDto updateCustomer(long customerId, CreateOrUpdateCustomerDto updateUserDto) {
 
         // Get user from database
-        LOGGER.debug("Getting user with id {} from database", userId);
-        CustomerEntity customerEntity = customerRepository.findById(userId)
+        LOGGER.debug("Getting customer with id {} from database", customerId);
+        CustomerEntity customerEntity = customerRepository.findById(customerId)
                 .orElseThrow(() -> {
-                    LOGGER.error("Failed to get user with {} from database", userId);
-                    throw new UserNotFoundException(ErrorMessages.CUSTOMER_NOT_FOUND);
+                    LOGGER.error("Failed to get customer with {} from database", customerId);
+                    throw new CustomerNotFoundException(ErrorMessages.CUSTOMER_NOT_FOUND);
                 });
 
         // Update data with userDetails received
@@ -140,11 +141,11 @@ public class CustomerServiceImp implements CustomerService {
         customerEntity.setCellNumber(updateUserDto.getCellNumber());
 
         // Save changes
-        LOGGER.info("Saving updates from user with id {}", userId);
+        LOGGER.info("Saving updates from customer with id {}", customerId);
         customerRepository.save(customerEntity);
 
-        // Convert to CustomerDetailsDto and return updated user
-        LOGGER.debug("Retrieving updated user");
+        // Convert to CustomerDetailsDto and return updated customer
+        LOGGER.debug("Retrieving updated customer");
         return CustomerConverter.fromCustomerEntityToCustomerDetailsDto(customerEntity);
     }
 
@@ -152,18 +153,18 @@ public class CustomerServiceImp implements CustomerService {
      * @see CustomerService#deleteCustomer(long)
      */
     @Override
-    public void deleteCustomer(long userId) {
+    public void deleteCustomer(long customerId) {
 
-        // Get user from database
-        LOGGER.debug("Getting user with id {} from database", userId);
-        CustomerEntity customerEntity = customerRepository.findById(userId)
+        // Get customer from database
+        LOGGER.debug("Getting customer with id {} from database", customerId);
+        CustomerEntity customerEntity = customerRepository.findById(customerId)
                 .orElseThrow(() -> {
-                    LOGGER.error("Failed to get user with {} from database", userId);
-                    throw new UserNotFoundException(ErrorMessages.CUSTOMER_NOT_FOUND);
+                    LOGGER.error("Failed to get customer with {} from database", customerId);
+                    throw new CustomerNotFoundException(ErrorMessages.CUSTOMER_NOT_FOUND);
                 });
 
-        // Delete user from database
-        LOGGER.debug("Deleting user with id {}", userId);
+        // Delete customer from database
+        LOGGER.debug("Deleting customer with id {}", customerId);
         customerRepository.delete(customerEntity);
     }
 }

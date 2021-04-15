@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 
 /**
- * Rent a Car exception handler
+ * Rabbit Mechanic exception handler
  */
 @ControllerAdvice
 public class RabbitMechanicExceptionHandler extends ResponseEntityExceptionHandler {
@@ -27,9 +27,10 @@ public class RabbitMechanicExceptionHandler extends ResponseEntityExceptionHandl
      * @return {@link Error}
      */
     @ExceptionHandler(value = {
-            UserNotFoundException.class,
+            CustomerNotFoundException.class,
             CarNotFoundException.class,
-            RepairNotFoundException.class
+            RepairNotFoundException.class,
+            EmployeeNotFoundException.class
     })
     public ResponseEntity<Error> handlerNotFoundException(Exception ex, HttpServletRequest request) {
         return buildErrorResponse(ex, request, HttpStatus.NOT_FOUND);
@@ -42,9 +43,10 @@ public class RabbitMechanicExceptionHandler extends ResponseEntityExceptionHandl
      * @return {@link Error}
      */
     @ExceptionHandler(value = {
-            UserAlreadyExistsException.class,
+            CustomerAlreadyExistsException.class,
             CarAlreadyExistsException.class,
-            RepairAlreadyExistsException.class
+            RepairAlreadyExistsException.class,
+            EmployeeAlreadyExistsException.class
             })
     public ResponseEntity<Error> handlerConflictException(Exception ex, HttpServletRequest request) {
         return buildErrorResponse(ex, request, HttpStatus.CONFLICT);

@@ -17,7 +17,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Entity
 @Table(name = "cars")
-public class CarEntity {
+public class CarEntity extends AbstractEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

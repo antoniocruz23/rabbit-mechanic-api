@@ -1,7 +1,7 @@
 package com.rabbit.mechanic.converter;
 
-import com.rabbit.mechanic.command.user.CreateOrUpdateCustomerDto;
-import com.rabbit.mechanic.command.user.CustomerDetailsDto;
+import com.rabbit.mechanic.command.customer.CreateOrUpdateCustomerDto;
+import com.rabbit.mechanic.command.customer.CustomerDetailsDto;
 import com.rabbit.mechanic.persistence.entity.CustomerEntity;
 
 /**

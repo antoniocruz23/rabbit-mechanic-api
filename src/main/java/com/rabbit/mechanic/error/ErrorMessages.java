@@ -8,6 +8,9 @@ public class ErrorMessages {
     public static final String CUSTOMER_NOT_FOUND = "Can't find any customer with the given id";
     public static final String CUSTOMER_ALREADY_EXISTS = "Customer with the given email already exists";
 
+    public static final String EMPLOYEE_NOT_FOUND = "Can't find any employee with the given id";
+    public static final String EMPLOYEE_ALREADY_EXISTS = "Employee with the given username already exists";
+
     public static final String CAR_NOT_FOUND = "Can't find any car with the given id";
     public static final String CAR_ALREADY_EXISTS = "Car with the given plate already exists";
 

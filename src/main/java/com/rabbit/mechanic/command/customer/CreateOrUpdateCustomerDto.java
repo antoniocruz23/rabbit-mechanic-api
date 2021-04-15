@@ -1,4 +1,4 @@
-package com.rabbit.mechanic.command.user;
+package com.rabbit.mechanic.command.customer;
 
 import lombok.Builder;
 import lombok.Data;

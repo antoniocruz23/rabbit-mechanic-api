@@ -51,7 +51,7 @@ public class RepairServiceImp implements RepairService {
         CarEntity carEntity = carRepository.findById(createRepairDto.getCarId())
                 .orElseThrow(() -> {
                     LOGGER.error("Failed to get car with {} from database", createRepairDto.getCarId());
-                    throw new UserNotFoundException(ErrorMessages.CAR_NOT_FOUND);
+                    throw new CustomerNotFoundException(ErrorMessages.CAR_NOT_FOUND);
                 });
 
         repairEntity.setCarEntity(carEntity);

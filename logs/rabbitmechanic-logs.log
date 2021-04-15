@@ -5607,7 +5607,7 @@ com.rabbit.mechanic.exception.RepairAlreadyExistsException: Repair with the give
 [DEBUG] 2021-04-14 15:31:41.540 [http-nio-8080-exec-3] UserService - Getting user with id 2 from database
 [ERROR] 2021-04-14 15:31:41.557 [http-nio-8080-exec-3] UserService - Failed to get user with 2 from database
 [ERROR] 2021-04-14 15:31:41.558 [http-nio-8080-exec-3] CarController - Failed to created car - CreateOrUpdateCarDto(userId=2, brand=JETTA, engineType=PETROL, plate=Nice234)
-com.rabbit.mechanic.exception.UserNotFoundException: Can't find any user with the given id
+com.rabbit.mechanic.exception.CustomerNotFoundException: Can't find any user with the given id
 	at com.rabbit.mechanic.service.CarServiceImp.lambda$addNewCar$0(CarServiceImp.java:54) ~[classes/:?]
 	at java.util.Optional.orElseThrow(Optional.java:408) ~[?:?]
 	at com.rabbit.mechanic.service.CarServiceImp.addNewCar(CarServiceImp.java:52) ~[classes/:?]
@@ -7375,7 +7375,7 @@ com.rabbit.mechanic.exception.CarAlreadyExistsException: Car with the given plat
 [DEBUG] 2021-04-14 16:27:40.167 [http-nio-8080-exec-3] RepairService - Getting car with id 2 from database
 [ERROR] 2021-04-14 16:27:40.172 [http-nio-8080-exec-3] RepairService - Failed to get car with 2 from database
 [ERROR] 2021-04-14 16:27:40.173 [http-nio-8080-exec-3] RepairController - Failed to created repair - CreateOrUpdateRepairDto(repairId=0, carId=2, repairName=Oil Change, repairDescription=oil 15W, startDate=Fri Jan 01 00:00:00 WET 2021, endDate=Sun Jan 10 00:00:00 WET 2021, price=30)
-com.rabbit.mechanic.exception.UserNotFoundException: Can't find any car with the given id
+com.rabbit.mechanic.exception.CustomerNotFoundException: Can't find any car with the given id
 	at com.rabbit.mechanic.service.RepairServiceImp.lambda$createRepair$0(RepairServiceImp.java:54) ~[classes/:?]
 	at java.util.Optional.orElseThrow(Optional.java:408) ~[?:?]
 	at com.rabbit.mechanic.service.RepairServiceImp.createRepair(RepairServiceImp.java:52) ~[classes/:?]
@@ -7479,42 +7479,47 @@ com.rabbit.mechanic.exception.UserNotFoundException: Can't find any car with the
 [DEBUG] 2021-04-14 16:42:22.924 [http-nio-8080-exec-7] RepairService - Getting repair with id 1 from database
 [DEBUG] 2021-04-14 16:42:22.928 [http-nio-8080-exec-7] RepairService - Deleting repair with id 1
 [INFO ] 2021-04-14 16:42:22.941 [http-nio-8080-exec-7] RepairController - Repair with id 1 deleted successfully
-[INFO ] 2021-04-15 00:04:52.474 [restartedMain] RabbitMechanicApplication - Starting RabbitMechanicApplication using Java 11.0.10 on Antonios-MacBook-Pro.local with PID 26339 (/Users/tojo/Desktop/workplace/rabbit-mechanic/target/classes started by tojo in /Users/tojo/Desktop/workplace/rabbit-mechanic)
-[DEBUG] 2021-04-15 00:04:52.477 [restartedMain] RabbitMechanicApplication - Running with Spring Boot v2.4.4, Spring v5.3.5
-[INFO ] 2021-04-15 00:04:52.478 [restartedMain] RabbitMechanicApplication - No active profile set, falling back to default profiles: default
-[INFO ] 2021-04-15 00:04:56.498 [restartedMain] RabbitMechanicApplication - Started RabbitMechanicApplication in 4.361 seconds (JVM running for 10.631)
-[INFO ] 2021-04-15 00:05:21.398 [http-nio-8080-exec-3] CustomerController - Request to create - CreateOrUpdateCustomerDto(firstName=Rabbit, lastName=Mechanic, address=Gosford Street, email=rabbit.lda@gmail.com, cellNumber=25578783).
-[DEBUG] 2021-04-15 00:05:21.408 [http-nio-8080-exec-3] CustomerService - Creating user - CreateOrUpdateCustomerDto(firstName=Rabbit, lastName=Mechanic, address=Gosford Street, email=rabbit.lda@gmail.com, cellNumber=25578783)
-[INFO ] 2021-04-15 00:05:21.408 [http-nio-8080-exec-3] CustomerService - Persisting user into database
-[INFO ] 2021-04-15 00:05:21.409 [http-nio-8080-exec-3] CustomerService - Saving user on database
-[DEBUG] 2021-04-15 00:05:21.481 [http-nio-8080-exec-3] CustomerService - Retrieving created user
-[INFO ] 2021-04-15 00:05:21.482 [http-nio-8080-exec-3] CustomerController - User created successfully. Retrieving created user with id 1
-[INFO ] 2021-04-15 00:05:33.904 [http-nio-8080-exec-4] CustomerController - Request to get customer with id 1
-[DEBUG] 2021-04-15 00:05:33.904 [http-nio-8080-exec-4] CustomerService - Getting user with id 1 from database
-[DEBUG] 2021-04-15 00:05:33.947 [http-nio-8080-exec-4] CustomerService - Retrieving got user
-[INFO ] 2021-04-15 00:05:33.948 [http-nio-8080-exec-4] CustomerController - Retrieving customer with id 1
-[INFO ] 2021-04-15 00:05:41.773 [http-nio-8080-exec-5] CustomerController - Request to get customers list - page: 0, size: 5
-[DEBUG] 2021-04-15 00:05:41.773 [http-nio-8080-exec-5] CustomerService - Getting all users from database
-[DEBUG] 2021-04-15 00:05:41.889 [http-nio-8080-exec-5] CustomerService - Convert list items from CustomerEntity to CustomerDetailsDto
-[INFO ] 2021-04-15 00:05:41.890 [http-nio-8080-exec-5] CustomerController - Retrieving customers list
-[INFO ] 2021-04-15 00:05:49.098 [http-nio-8080-exec-6] CustomerController - Request to update customer with id 1
-[DEBUG] 2021-04-15 00:05:49.099 [http-nio-8080-exec-6] CustomerService - Getting user with id 1 from database
-[INFO ] 2021-04-15 00:05:49.103 [http-nio-8080-exec-6] CustomerService - Saving updates from user with id 1
-[DEBUG] 2021-04-15 00:05:49.118 [http-nio-8080-exec-6] CustomerService - Retrieving updated user
-[INFO ] 2021-04-15 00:05:49.119 [http-nio-8080-exec-6] CustomerController - Customer with id 1 updated successfully. Retrieving updated customer
-[INFO ] 2021-04-15 00:06:03.558 [http-nio-8080-exec-7] CustomerController - Request to delete customer with id 1
-[DEBUG] 2021-04-15 00:06:03.558 [http-nio-8080-exec-7] CustomerService - Getting user with id 1 from database
-[DEBUG] 2021-04-15 00:06:03.563 [http-nio-8080-exec-7] CustomerService - Deleting user with id 1
-[INFO ] 2021-04-15 00:06:03.579 [http-nio-8080-exec-7] CustomerController - Customer with id 1 deleted successfully
-[INFO ] 2021-04-15 00:06:09.809 [http-nio-8080-exec-8] CustomerController - Request to get customer with id 1
-[DEBUG] 2021-04-15 00:06:09.811 [http-nio-8080-exec-8] CustomerService - Getting user with id 1 from database
-[ERROR] 2021-04-15 00:06:09.820 [http-nio-8080-exec-8] CustomerService - Failed to get user with 1 from database
-[ERROR] 2021-04-15 00:06:09.821 [http-nio-8080-exec-8] CustomerController - Failed to get customer with id 1
-com.rabbit.mechanic.exception.UserNotFoundException: Can't find any customer with the given id
-	at com.rabbit.mechanic.service.CustomerServiceImp.lambda$getCustomerById$0(CustomerServiceImp.java:78) ~[classes/:?]
-	at java.util.Optional.orElseThrow(Optional.java:408) ~[?:?]
-	at com.rabbit.mechanic.service.CustomerServiceImp.getCustomerById(CustomerServiceImp.java:76) ~[classes/:?]
-	at com.rabbit.mechanic.controller.CustomerController.getCustomerById(CustomerController.java:70) [classes/:?]
+[INFO ] 2021-04-15 01:57:59.967 [restartedMain] RabbitMechanicApplication - Starting RabbitMechanicApplication using Java 11.0.10 on Antonios-MacBook-Pro.local with PID 27156 (/Users/tojo/Desktop/workplace/rabbit-mechanic/target/classes started by tojo in /Users/tojo/Desktop/workplace/rabbit-mechanic)
+[DEBUG] 2021-04-15 01:57:59.971 [restartedMain] RabbitMechanicApplication - Running with Spring Boot v2.4.4, Spring v5.3.5
+[INFO ] 2021-04-15 01:57:59.972 [restartedMain] RabbitMechanicApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2021-04-15 01:58:03.393 [restartedMain] RabbitMechanicApplication - Started RabbitMechanicApplication in 3.757 seconds (JVM running for 9.936)
+[INFO ] 2021-04-15 02:04:42.657 [restartedMain] RabbitMechanicApplication - Starting RabbitMechanicApplication using Java 11.0.10 on Antonios-MacBook-Pro.local with PID 27193 (/Users/tojo/Desktop/workplace/rabbit-mechanic/target/classes started by tojo in /Users/tojo/Desktop/workplace/rabbit-mechanic)
+[DEBUG] 2021-04-15 02:04:42.661 [restartedMain] RabbitMechanicApplication - Running with Spring Boot v2.4.4, Spring v5.3.5
+[INFO ] 2021-04-15 02:04:42.662 [restartedMain] RabbitMechanicApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2021-04-15 02:04:45.957 [restartedMain] RabbitMechanicApplication - Started RabbitMechanicApplication in 3.604 seconds (JVM running for 9.752)
+[INFO ] 2021-04-15 02:04:48.219 [http-nio-8080-exec-1] EmployeeController - Request to create - CreateUserDto{firstName='Rui', lastName='Racing', password='***'}.
+[DEBUG] 2021-04-15 02:04:48.224 [http-nio-8080-exec-1] EmployeeService - Creating employee - CreateUserDto{firstName='Rui', lastName='Racing', password='***'}
+[INFO ] 2021-04-15 02:04:48.224 [http-nio-8080-exec-1] EmployeeService - Persisting employee into database
+[INFO ] 2021-04-15 02:04:48.224 [http-nio-8080-exec-1] EmployeeService - Saving employee on database
+[DEBUG] 2021-04-15 02:04:48.283 [http-nio-8080-exec-1] EmployeeService - Retrieving created employee
+[INFO ] 2021-04-15 02:04:48.284 [http-nio-8080-exec-1] EmployeeController - Employee created successfully. Retrieving created employee with id 1
+[INFO ] 2021-04-15 02:04:59.408 [http-nio-8080-exec-3] EmployeeController - Request to create - CreateUserDto{firstName='Rui', lastName='Racing', password='***'}.
+[DEBUG] 2021-04-15 02:04:59.408 [http-nio-8080-exec-3] EmployeeService - Creating employee - CreateUserDto{firstName='Rui', lastName='Racing', password='***'}
+[INFO ] 2021-04-15 02:04:59.409 [http-nio-8080-exec-3] EmployeeService - Persisting employee into database
+[INFO ] 2021-04-15 02:04:59.409 [http-nio-8080-exec-3] EmployeeService - Saving employee on database
+[DEBUG] 2021-04-15 02:04:59.413 [http-nio-8080-exec-3] EmployeeService - Retrieving created employee
+[INFO ] 2021-04-15 02:04:59.413 [http-nio-8080-exec-3] EmployeeController - Employee created successfully. Retrieving created employee with id 2
+[INFO ] 2021-04-15 02:05:05.022 [http-nio-8080-exec-4] EmployeeController - Request to create - CreateUserDto{firstName='Rui', lastName='Racing', password='***'}.
+[DEBUG] 2021-04-15 02:05:05.023 [http-nio-8080-exec-4] EmployeeService - Creating employee - CreateUserDto{firstName='Rui', lastName='Racing', password='***'}
+[INFO ] 2021-04-15 02:05:05.023 [http-nio-8080-exec-4] EmployeeService - Persisting employee into database
+[INFO ] 2021-04-15 02:05:05.023 [http-nio-8080-exec-4] EmployeeService - Saving employee on database
+[ERROR] 2021-04-15 02:05:05.039 [http-nio-8080-exec-4] EmployeeService - Duplicated username - EmployeeEntity(employeeId=0, firstName=Rui, lastName=Racing, username=CoelhoStreet, password=soufixe, role=ADMIN)
+org.springframework.dao.DataIntegrityViolationException: could not execute statement; SQL [n/a]; constraint [employees.UK_3gqbimdf7fckjbwt1kcud141m]; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.convertHibernateAccessException(HibernateJpaDialect.java:276) ~[spring-orm-5.3.5.jar:5.3.5]
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.translateExceptionIfPossible(HibernateJpaDialect.java:233) ~[spring-orm-5.3.5.jar:5.3.5]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.translateExceptionIfPossible(AbstractEntityManagerFactoryBean.java:551) ~[spring-orm-5.3.5.jar:5.3.5]
+	at org.springframework.dao.support.ChainedPersistenceExceptionTranslator.translateExceptionIfPossible(ChainedPersistenceExceptionTranslator.java:61) ~[spring-tx-5.3.5.jar:5.3.5]
+	at org.springframework.dao.support.DataAccessUtils.translateIfNecessary(DataAccessUtils.java:242) ~[spring-tx-5.3.5.jar:5.3.5]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:152) ~[spring-tx-5.3.5.jar:5.3.5]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.5.jar:5.3.5]
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:174) ~[spring-data-jpa-2.4.6.jar:2.4.6]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.5.jar:5.3.5]
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97) ~[spring-aop-5.3.5.jar:5.3.5]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.5.jar:5.3.5]
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:215) ~[spring-aop-5.3.5.jar:5.3.5]
+	at com.sun.proxy.$Proxy120.save(Unknown Source) ~[?:?]
+	at com.rabbit.mechanic.service.EmployeeServiceImp.createEmployee(EmployeeServiceImp.java:55) [classes/:?]
+	at com.rabbit.mechanic.controller.EmployeeController.createEmployee(EmployeeController.java:46) [classes/:?]
 	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
 	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
 	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
@@ -7528,8 +7533,8 @@ com.rabbit.mechanic.exception.UserNotFoundException: Can't find any customer wit
 	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1060) [spring-webmvc-5.3.5.jar:5.3.5]
 	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:962) [spring-webmvc-5.3.5.jar:5.3.5]
 	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) [spring-webmvc-5.3.5.jar:5.3.5]
-	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898) [spring-webmvc-5.3.5.jar:5.3.5]
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:626) [tomcat-embed-core-9.0.44.jar:4.0.FR]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909) [spring-webmvc-5.3.5.jar:5.3.5]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:652) [tomcat-embed-core-9.0.44.jar:4.0.FR]
 	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) [spring-webmvc-5.3.5.jar:5.3.5]
 	at javax.servlet.http.HttpServlet.service(HttpServlet.java:733) [tomcat-embed-core-9.0.44.jar:4.0.FR]
 	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227) [tomcat-embed-core-9.0.44.jar:9.0.44]
@@ -7569,12 +7574,419 @@ com.rabbit.mechanic.exception.UserNotFoundException: Can't find any customer wit
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) [?:?]
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.44.jar:9.0.44]
 	at java.lang.Thread.run(Thread.java:829) [?:?]
-[INFO ] 2021-04-15 00:09:58.288 [http-nio-8080-exec-10] CarController - Request to create - CreateOrUpdateCarDto(userId=1, brand=OPEL, engineType=PETROL, plate=Nice).
-[DEBUG] 2021-04-15 00:09:58.298 [http-nio-8080-exec-10] CustomerService - Creating car - CreateOrUpdateCarDto(userId=1, brand=OPEL, engineType=PETROL, plate=Nice)
-[DEBUG] 2021-04-15 00:09:58.299 [http-nio-8080-exec-10] CustomerService - Getting user with id 1 from database
-[ERROR] 2021-04-15 00:09:58.303 [http-nio-8080-exec-10] CustomerService - Failed to get user with 1 from database
-[ERROR] 2021-04-15 00:09:58.303 [http-nio-8080-exec-10] CarController - Failed to created car - CreateOrUpdateCarDto(userId=1, brand=OPEL, engineType=PETROL, plate=Nice)
-com.rabbit.mechanic.exception.UserNotFoundException: Can't find any customer with the given id
+Caused by: org.hibernate.exception.ConstraintViolationException: could not execute statement
+	at org.hibernate.exception.internal.SQLExceptionTypeDelegate.convert(SQLExceptionTypeDelegate.java:59) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:42) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:113) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:99) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:200) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.dialect.identity.GetGeneratedKeysDelegate.executeAndExtract(GetGeneratedKeysDelegate.java:57) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.id.insert.AbstractReturningDelegate.performInsert(AbstractReturningDelegate.java:43) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3195) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3801) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.action.internal.EntityIdentityInsertAction.execute(EntityIdentityInsertAction.java:84) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.engine.spi.ActionQueue.execute(ActionQueue.java:645) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.engine.spi.ActionQueue.addResolvedEntityInsertAction(ActionQueue.java:282) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.engine.spi.ActionQueue.addInsertAction(ActionQueue.java:263) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.engine.spi.ActionQueue.addAction(ActionQueue.java:317) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.event.internal.AbstractSaveEventListener.addInsertAction(AbstractSaveEventListener.java:330) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.event.internal.AbstractSaveEventListener.performSaveOrReplicate(AbstractSaveEventListener.java:287) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.event.internal.AbstractSaveEventListener.performSave(AbstractSaveEventListener.java:193) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.event.internal.AbstractSaveEventListener.saveWithGeneratedId(AbstractSaveEventListener.java:123) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.event.internal.DefaultPersistEventListener.entityIsTransient(DefaultPersistEventListener.java:185) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:128) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:55) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:93) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.internal.SessionImpl.firePersist(SessionImpl.java:720) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.internal.SessionImpl.persist(SessionImpl.java:706) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:566) ~[?:?]
+	at org.springframework.orm.jpa.ExtendedEntityManagerCreator$ExtendedEntityManagerInvocationHandler.invoke(ExtendedEntityManagerCreator.java:362) ~[spring-orm-5.3.5.jar:5.3.5]
+	at com.sun.proxy.$Proxy113.persist(Unknown Source) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:566) ~[?:?]
+	at org.springframework.orm.jpa.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler.invoke(SharedEntityManagerCreator.java:311) ~[spring-orm-5.3.5.jar:5.3.5]
+	at com.sun.proxy.$Proxy113.persist(Unknown Source) ~[?:?]
+	at org.springframework.data.jpa.repository.support.SimpleJpaRepository.save(SimpleJpaRepository.java:557) ~[spring-data-jpa-2.4.6.jar:2.4.6]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:566) ~[?:?]
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker$RepositoryFragmentMethodInvoker.lambda$new$0(RepositoryMethodInvoker.java:289) ~[spring-data-commons-2.4.6.jar:2.4.6]
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.doInvoke(RepositoryMethodInvoker.java:137) ~[spring-data-commons-2.4.6.jar:2.4.6]
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.invoke(RepositoryMethodInvoker.java:121) ~[spring-data-commons-2.4.6.jar:2.4.6]
+	at org.springframework.data.repository.core.support.RepositoryComposition$RepositoryFragments.invoke(RepositoryComposition.java:524) ~[spring-data-commons-2.4.6.jar:2.4.6]
+	at org.springframework.data.repository.core.support.RepositoryComposition.invoke(RepositoryComposition.java:285) ~[spring-data-commons-2.4.6.jar:2.4.6]
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport$ImplementationMethodExecutionInterceptor.invoke(RepositoryFactorySupport.java:531) ~[spring-data-commons-2.4.6.jar:2.4.6]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.5.jar:5.3.5]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:156) ~[spring-data-commons-2.4.6.jar:2.4.6]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:131) ~[spring-data-commons-2.4.6.jar:2.4.6]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.5.jar:5.3.5]
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:123) ~[spring-tx-5.3.5.jar:5.3.5]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:388) ~[spring-tx-5.3.5.jar:5.3.5]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119) ~[spring-tx-5.3.5.jar:5.3.5]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.5.jar:5.3.5]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137) ~[spring-tx-5.3.5.jar:5.3.5]
+	... 63 more
+Caused by: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'CoelhoStreet' for key 'employees.UK_3gqbimdf7fckjbwt1kcud141m'
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:117) ~[mysql-connector-java-8.0.23.jar:8.0.23]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-java-8.0.23.jar:8.0.23]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953) ~[mysql-connector-java-8.0.23.jar:8.0.23]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1092) ~[mysql-connector-java-8.0.23.jar:8.0.23]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1040) ~[mysql-connector-java-8.0.23.jar:8.0.23]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1347) ~[mysql-connector-java-8.0.23.jar:8.0.23]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:1025) ~[mysql-connector-java-8.0.23.jar:8.0.23]
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeUpdate(ProxyPreparedStatement.java:61) ~[HikariCP-3.4.5.jar:?]
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeUpdate(HikariProxyPreparedStatement.java) ~[HikariCP-3.4.5.jar:?]
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:197) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.dialect.identity.GetGeneratedKeysDelegate.executeAndExtract(GetGeneratedKeysDelegate.java:57) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.id.insert.AbstractReturningDelegate.performInsert(AbstractReturningDelegate.java:43) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3195) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3801) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.action.internal.EntityIdentityInsertAction.execute(EntityIdentityInsertAction.java:84) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.engine.spi.ActionQueue.execute(ActionQueue.java:645) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.engine.spi.ActionQueue.addResolvedEntityInsertAction(ActionQueue.java:282) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.engine.spi.ActionQueue.addInsertAction(ActionQueue.java:263) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.engine.spi.ActionQueue.addAction(ActionQueue.java:317) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.event.internal.AbstractSaveEventListener.addInsertAction(AbstractSaveEventListener.java:330) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.event.internal.AbstractSaveEventListener.performSaveOrReplicate(AbstractSaveEventListener.java:287) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.event.internal.AbstractSaveEventListener.performSave(AbstractSaveEventListener.java:193) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.event.internal.AbstractSaveEventListener.saveWithGeneratedId(AbstractSaveEventListener.java:123) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.event.internal.DefaultPersistEventListener.entityIsTransient(DefaultPersistEventListener.java:185) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:128) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:55) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:93) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.internal.SessionImpl.firePersist(SessionImpl.java:720) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.internal.SessionImpl.persist(SessionImpl.java:706) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:566) ~[?:?]
+	at org.springframework.orm.jpa.ExtendedEntityManagerCreator$ExtendedEntityManagerInvocationHandler.invoke(ExtendedEntityManagerCreator.java:362) ~[spring-orm-5.3.5.jar:5.3.5]
+	at com.sun.proxy.$Proxy113.persist(Unknown Source) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:566) ~[?:?]
+	at org.springframework.orm.jpa.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler.invoke(SharedEntityManagerCreator.java:311) ~[spring-orm-5.3.5.jar:5.3.5]
+	at com.sun.proxy.$Proxy113.persist(Unknown Source) ~[?:?]
+	at org.springframework.data.jpa.repository.support.SimpleJpaRepository.save(SimpleJpaRepository.java:557) ~[spring-data-jpa-2.4.6.jar:2.4.6]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:566) ~[?:?]
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker$RepositoryFragmentMethodInvoker.lambda$new$0(RepositoryMethodInvoker.java:289) ~[spring-data-commons-2.4.6.jar:2.4.6]
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.doInvoke(RepositoryMethodInvoker.java:137) ~[spring-data-commons-2.4.6.jar:2.4.6]
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.invoke(RepositoryMethodInvoker.java:121) ~[spring-data-commons-2.4.6.jar:2.4.6]
+	at org.springframework.data.repository.core.support.RepositoryComposition$RepositoryFragments.invoke(RepositoryComposition.java:524) ~[spring-data-commons-2.4.6.jar:2.4.6]
+	at org.springframework.data.repository.core.support.RepositoryComposition.invoke(RepositoryComposition.java:285) ~[spring-data-commons-2.4.6.jar:2.4.6]
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport$ImplementationMethodExecutionInterceptor.invoke(RepositoryFactorySupport.java:531) ~[spring-data-commons-2.4.6.jar:2.4.6]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.5.jar:5.3.5]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:156) ~[spring-data-commons-2.4.6.jar:2.4.6]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:131) ~[spring-data-commons-2.4.6.jar:2.4.6]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.5.jar:5.3.5]
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:123) ~[spring-tx-5.3.5.jar:5.3.5]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:388) ~[spring-tx-5.3.5.jar:5.3.5]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119) ~[spring-tx-5.3.5.jar:5.3.5]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.5.jar:5.3.5]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137) ~[spring-tx-5.3.5.jar:5.3.5]
+	... 63 more
+[ERROR] 2021-04-15 02:05:05.058 [http-nio-8080-exec-4] EmployeeController - Failed to created employee - CreateUserDto{firstName='Rui', lastName='Racing', password='***'}
+com.rabbit.mechanic.exception.EmployeeAlreadyExistsException: Employee with the given username already exists
+	at com.rabbit.mechanic.service.EmployeeServiceImp.createEmployee(EmployeeServiceImp.java:59) ~[classes/:?]
+	at com.rabbit.mechanic.controller.EmployeeController.createEmployee(EmployeeController.java:46) [classes/:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:566) ~[?:?]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:197) [spring-web-5.3.5.jar:5.3.5]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:141) [spring-web-5.3.5.jar:5.3.5]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106) [spring-webmvc-5.3.5.jar:5.3.5]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:894) [spring-webmvc-5.3.5.jar:5.3.5]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808) [spring-webmvc-5.3.5.jar:5.3.5]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) [spring-webmvc-5.3.5.jar:5.3.5]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1060) [spring-webmvc-5.3.5.jar:5.3.5]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:962) [spring-webmvc-5.3.5.jar:5.3.5]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) [spring-webmvc-5.3.5.jar:5.3.5]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909) [spring-webmvc-5.3.5.jar:5.3.5]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:652) [tomcat-embed-core-9.0.44.jar:4.0.FR]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) [spring-webmvc-5.3.5.jar:5.3.5]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:733) [tomcat-embed-core-9.0.44.jar:4.0.FR]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) [tomcat-embed-websocket-9.0.44.jar:9.0.44]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.catalina.filters.CorsFilter.handleNonCORS(CorsFilter.java:352) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.catalina.filters.CorsFilter.doFilter(CorsFilter.java:171) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) [spring-web-5.3.5.jar:5.3.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) [spring-web-5.3.5.jar:5.3.5]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) [spring-web-5.3.5.jar:5.3.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) [spring-web-5.3.5.jar:5.3.5]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) [spring-web-5.3.5.jar:5.3.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) [spring-web-5.3.5.jar:5.3.5]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:542) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:143) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:374) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:893) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1707) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) [?:?]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at java.lang.Thread.run(Thread.java:829) [?:?]
+[INFO ] 2021-04-15 02:05:32.282 [http-nio-8080-exec-5] EmployeeController - Request to get employee with id 1
+[DEBUG] 2021-04-15 02:05:32.283 [http-nio-8080-exec-5] EmployeeService - Getting employee with id 1 from database
+[DEBUG] 2021-04-15 02:05:32.305 [http-nio-8080-exec-5] EmployeeService - Retrieving got employee
+[INFO ] 2021-04-15 02:05:32.306 [http-nio-8080-exec-5] EmployeeController - Retrieved employee with id 1
+[INFO ] 2021-04-15 02:05:42.890 [http-nio-8080-exec-7] EmployeeController - Request to get all employees
+[DEBUG] 2021-04-15 02:05:42.891 [http-nio-8080-exec-7] EmployeeService - Getting all employees from database
+[DEBUG] 2021-04-15 02:05:43.007 [http-nio-8080-exec-7] EmployeeService - Convert list items from EmployeeEntity to EmployeeDetailsDto
+[INFO ] 2021-04-15 02:05:43.008 [http-nio-8080-exec-7] EmployeeController - Retrieving employees list
+[INFO ] 2021-04-15 02:06:32.910 [http-nio-8080-exec-10] EmployeeController - Request to update employee with id 1
+[DEBUG] 2021-04-15 02:06:32.911 [http-nio-8080-exec-10] EmployeeService - Getting employee with id 1 from database
+[INFO ] 2021-04-15 02:06:32.918 [http-nio-8080-exec-10] EmployeeService - Saving updates from employee with id 1
+[ERROR] 2021-04-15 02:06:32.931 [http-nio-8080-exec-10] EmployeeController - Failed to update employee with id 1 - UpdateEmployeeDto(firstName=Rui, lastName=Racing, username=CoelhoStreet, role=MECHANIC)
+org.springframework.dao.DataIntegrityViolationException: could not execute statement; SQL [n/a]; constraint [employees.UK_3gqbimdf7fckjbwt1kcud141m]; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.convertHibernateAccessException(HibernateJpaDialect.java:276) ~[spring-orm-5.3.5.jar:5.3.5]
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.translateExceptionIfPossible(HibernateJpaDialect.java:233) ~[spring-orm-5.3.5.jar:5.3.5]
+	at org.springframework.orm.jpa.JpaTransactionManager.doCommit(JpaTransactionManager.java:566) ~[spring-orm-5.3.5.jar:5.3.5]
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.processCommit(AbstractPlatformTransactionManager.java:743) ~[spring-tx-5.3.5.jar:5.3.5]
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.commit(AbstractPlatformTransactionManager.java:711) ~[spring-tx-5.3.5.jar:5.3.5]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.commitTransactionAfterReturning(TransactionAspectSupport.java:654) ~[spring-tx-5.3.5.jar:5.3.5]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:407) ~[spring-tx-5.3.5.jar:5.3.5]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119) ~[spring-tx-5.3.5.jar:5.3.5]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.5.jar:5.3.5]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137) ~[spring-tx-5.3.5.jar:5.3.5]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.5.jar:5.3.5]
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:174) ~[spring-data-jpa-2.4.6.jar:2.4.6]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.5.jar:5.3.5]
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97) ~[spring-aop-5.3.5.jar:5.3.5]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.5.jar:5.3.5]
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:215) ~[spring-aop-5.3.5.jar:5.3.5]
+	at com.sun.proxy.$Proxy120.save(Unknown Source) ~[?:?]
+	at com.rabbit.mechanic.service.EmployeeServiceImp.updateEmployee(EmployeeServiceImp.java:147) ~[classes/:?]
+	at com.rabbit.mechanic.controller.EmployeeController.updateEmployee(EmployeeController.java:123) [classes/:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:566) ~[?:?]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:197) [spring-web-5.3.5.jar:5.3.5]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:141) [spring-web-5.3.5.jar:5.3.5]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106) [spring-webmvc-5.3.5.jar:5.3.5]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:894) [spring-webmvc-5.3.5.jar:5.3.5]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808) [spring-webmvc-5.3.5.jar:5.3.5]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) [spring-webmvc-5.3.5.jar:5.3.5]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1060) [spring-webmvc-5.3.5.jar:5.3.5]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:962) [spring-webmvc-5.3.5.jar:5.3.5]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) [spring-webmvc-5.3.5.jar:5.3.5]
+	at org.springframework.web.servlet.FrameworkServlet.doPut(FrameworkServlet.java:920) [spring-webmvc-5.3.5.jar:5.3.5]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:655) [tomcat-embed-core-9.0.44.jar:4.0.FR]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) [spring-webmvc-5.3.5.jar:5.3.5]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:733) [tomcat-embed-core-9.0.44.jar:4.0.FR]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) [tomcat-embed-websocket-9.0.44.jar:9.0.44]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.catalina.filters.CorsFilter.handleNonCORS(CorsFilter.java:352) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.catalina.filters.CorsFilter.doFilter(CorsFilter.java:171) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) [spring-web-5.3.5.jar:5.3.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) [spring-web-5.3.5.jar:5.3.5]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) [spring-web-5.3.5.jar:5.3.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) [spring-web-5.3.5.jar:5.3.5]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) [spring-web-5.3.5.jar:5.3.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) [spring-web-5.3.5.jar:5.3.5]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:542) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:143) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:374) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:893) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1707) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) [?:?]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at java.lang.Thread.run(Thread.java:829) [?:?]
+Caused by: org.hibernate.exception.ConstraintViolationException: could not execute statement
+	at org.hibernate.exception.internal.SQLExceptionTypeDelegate.convert(SQLExceptionTypeDelegate.java:59) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:42) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:113) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:99) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:200) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.persister.entity.AbstractEntityPersister.update(AbstractEntityPersister.java:3492) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.persister.entity.AbstractEntityPersister.updateOrInsert(AbstractEntityPersister.java:3354) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.persister.entity.AbstractEntityPersister.update(AbstractEntityPersister.java:3768) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.action.internal.EntityUpdateAction.execute(EntityUpdateAction.java:201) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:604) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.engine.spi.ActionQueue.lambda$executeActions$1(ActionQueue.java:478) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at java.util.LinkedHashMap.forEach(LinkedHashMap.java:684) ~[?:?]
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:475) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.event.internal.AbstractFlushingEventListener.performExecutions(AbstractFlushingEventListener.java:345) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.event.internal.DefaultFlushEventListener.onFlush(DefaultFlushEventListener.java:40) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:93) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.internal.SessionImpl.doFlush(SessionImpl.java:1362) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.internal.SessionImpl.managedFlush(SessionImpl.java:453) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.internal.SessionImpl.flushBeforeTransactionCompletion(SessionImpl.java:3212) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.internal.SessionImpl.beforeTransactionCompletion(SessionImpl.java:2380) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.engine.jdbc.internal.JdbcCoordinatorImpl.beforeTransactionCompletion(JdbcCoordinatorImpl.java:447) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl.beforeCompletionCallback(JdbcResourceLocalTransactionCoordinatorImpl.java:183) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl.access$300(JdbcResourceLocalTransactionCoordinatorImpl.java:40) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl$TransactionDriverControlImpl.commit(JdbcResourceLocalTransactionCoordinatorImpl.java:281) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.engine.transaction.internal.TransactionImpl.commit(TransactionImpl.java:101) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.springframework.orm.jpa.JpaTransactionManager.doCommit(JpaTransactionManager.java:562) ~[spring-orm-5.3.5.jar:5.3.5]
+	... 70 more
+Caused by: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'CoelhoStreet' for key 'employees.UK_3gqbimdf7fckjbwt1kcud141m'
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:117) ~[mysql-connector-java-8.0.23.jar:8.0.23]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-java-8.0.23.jar:8.0.23]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953) ~[mysql-connector-java-8.0.23.jar:8.0.23]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1092) ~[mysql-connector-java-8.0.23.jar:8.0.23]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1040) ~[mysql-connector-java-8.0.23.jar:8.0.23]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1347) ~[mysql-connector-java-8.0.23.jar:8.0.23]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:1025) ~[mysql-connector-java-8.0.23.jar:8.0.23]
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeUpdate(ProxyPreparedStatement.java:61) ~[HikariCP-3.4.5.jar:?]
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeUpdate(HikariProxyPreparedStatement.java) ~[HikariCP-3.4.5.jar:?]
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:197) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.persister.entity.AbstractEntityPersister.update(AbstractEntityPersister.java:3492) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.persister.entity.AbstractEntityPersister.updateOrInsert(AbstractEntityPersister.java:3354) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.persister.entity.AbstractEntityPersister.update(AbstractEntityPersister.java:3768) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.action.internal.EntityUpdateAction.execute(EntityUpdateAction.java:201) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:604) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.engine.spi.ActionQueue.lambda$executeActions$1(ActionQueue.java:478) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at java.util.LinkedHashMap.forEach(LinkedHashMap.java:684) ~[?:?]
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:475) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.event.internal.AbstractFlushingEventListener.performExecutions(AbstractFlushingEventListener.java:345) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.event.internal.DefaultFlushEventListener.onFlush(DefaultFlushEventListener.java:40) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:93) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.internal.SessionImpl.doFlush(SessionImpl.java:1362) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.internal.SessionImpl.managedFlush(SessionImpl.java:453) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.internal.SessionImpl.flushBeforeTransactionCompletion(SessionImpl.java:3212) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.internal.SessionImpl.beforeTransactionCompletion(SessionImpl.java:2380) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.engine.jdbc.internal.JdbcCoordinatorImpl.beforeTransactionCompletion(JdbcCoordinatorImpl.java:447) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl.beforeCompletionCallback(JdbcResourceLocalTransactionCoordinatorImpl.java:183) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl.access$300(JdbcResourceLocalTransactionCoordinatorImpl.java:40) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl$TransactionDriverControlImpl.commit(JdbcResourceLocalTransactionCoordinatorImpl.java:281) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.engine.transaction.internal.TransactionImpl.commit(TransactionImpl.java:101) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.springframework.orm.jpa.JpaTransactionManager.doCommit(JpaTransactionManager.java:562) ~[spring-orm-5.3.5.jar:5.3.5]
+	... 70 more
+[INFO ] 2021-04-15 02:06:50.155 [http-nio-8080-exec-1] EmployeeController - Request to update employee with id 1
+[DEBUG] 2021-04-15 02:06:50.156 [http-nio-8080-exec-1] EmployeeService - Getting employee with id 1 from database
+[INFO ] 2021-04-15 02:06:50.160 [http-nio-8080-exec-1] EmployeeService - Saving updates from employee with id 1
+[DEBUG] 2021-04-15 02:06:50.167 [http-nio-8080-exec-1] EmployeeService - Retrieving updated employee
+[INFO ] 2021-04-15 02:06:50.167 [http-nio-8080-exec-1] EmployeeController - Employee with id 1 updated successfully. Retrieving updated data
+[INFO ] 2021-04-15 02:07:12.429 [http-nio-8080-exec-3] EmployeeController - Request to get all employees
+[DEBUG] 2021-04-15 02:07:12.430 [http-nio-8080-exec-3] EmployeeService - Getting all employees from database
+[DEBUG] 2021-04-15 02:07:12.439 [http-nio-8080-exec-3] EmployeeService - Convert list items from EmployeeEntity to EmployeeDetailsDto
+[INFO ] 2021-04-15 02:07:12.440 [http-nio-8080-exec-3] EmployeeController - Retrieving employees list
+[INFO ] 2021-04-15 02:07:29.957 [http-nio-8080-exec-4] EmployeeController - Request to delete employee with id 1
+[DEBUG] 2021-04-15 02:07:29.958 [http-nio-8080-exec-4] EmployeeService - Getting employee with id 1 from database
+[DEBUG] 2021-04-15 02:07:29.963 [http-nio-8080-exec-4] EmployeeService - Deleting employee with id 1
+[INFO ] 2021-04-15 02:07:29.977 [http-nio-8080-exec-4] EmployeeController - Employee with id 1 deleted successfully
+[INFO ] 2021-04-15 02:07:32.527 [http-nio-8080-exec-6] EmployeeController - Request to get all employees
+[DEBUG] 2021-04-15 02:07:32.528 [http-nio-8080-exec-6] EmployeeService - Getting all employees from database
+[DEBUG] 2021-04-15 02:07:32.534 [http-nio-8080-exec-6] EmployeeService - Convert list items from EmployeeEntity to EmployeeDetailsDto
+[INFO ] 2021-04-15 02:07:32.535 [http-nio-8080-exec-6] EmployeeController - Retrieving employees list
+[INFO ] 2021-04-15 02:07:38.022 [http-nio-8080-exec-5] RepairController - Request to create - CreateOrUpdateRepairDto(repairId=0, carId=1, repairName=Motor Change, repairDescription=oil 15W, startDate=Fri Jan 01 00:00:00 WET 2021, endDate=Sun Jan 10 00:00:00 WET 2021, price=30).
+[DEBUG] 2021-04-15 02:07:38.033 [http-nio-8080-exec-5] RepairService - Creating repair - CreateOrUpdateRepairDto(repairId=0, carId=1, repairName=Motor Change, repairDescription=oil 15W, startDate=Fri Jan 01 00:00:00 WET 2021, endDate=Sun Jan 10 00:00:00 WET 2021, price=30)
+[DEBUG] 2021-04-15 02:07:38.034 [http-nio-8080-exec-5] RepairService - Getting car with id 1 from database
+[ERROR] 2021-04-15 02:07:38.041 [http-nio-8080-exec-5] RepairService - Failed to get car with 1 from database
+[ERROR] 2021-04-15 02:07:38.041 [http-nio-8080-exec-5] RepairController - Failed to created repair - CreateOrUpdateRepairDto(repairId=0, carId=1, repairName=Motor Change, repairDescription=oil 15W, startDate=Fri Jan 01 00:00:00 WET 2021, endDate=Sun Jan 10 00:00:00 WET 2021, price=30)
+com.rabbit.mechanic.exception.CustomerNotFoundException: Can't find any car with the given id
+	at com.rabbit.mechanic.service.RepairServiceImp.lambda$createRepair$0(RepairServiceImp.java:54) ~[classes/:?]
+	at java.util.Optional.orElseThrow(Optional.java:408) ~[?:?]
+	at com.rabbit.mechanic.service.RepairServiceImp.createRepair(RepairServiceImp.java:52) ~[classes/:?]
+	at com.rabbit.mechanic.controller.RepairController.createRepair(RepairController.java:45) [classes/:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:566) ~[?:?]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:197) [spring-web-5.3.5.jar:5.3.5]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:141) [spring-web-5.3.5.jar:5.3.5]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106) [spring-webmvc-5.3.5.jar:5.3.5]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:894) [spring-webmvc-5.3.5.jar:5.3.5]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808) [spring-webmvc-5.3.5.jar:5.3.5]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) [spring-webmvc-5.3.5.jar:5.3.5]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1060) [spring-webmvc-5.3.5.jar:5.3.5]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:962) [spring-webmvc-5.3.5.jar:5.3.5]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) [spring-webmvc-5.3.5.jar:5.3.5]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909) [spring-webmvc-5.3.5.jar:5.3.5]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:652) [tomcat-embed-core-9.0.44.jar:4.0.FR]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) [spring-webmvc-5.3.5.jar:5.3.5]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:733) [tomcat-embed-core-9.0.44.jar:4.0.FR]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) [tomcat-embed-websocket-9.0.44.jar:9.0.44]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.catalina.filters.CorsFilter.handleNonCORS(CorsFilter.java:352) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.catalina.filters.CorsFilter.doFilter(CorsFilter.java:171) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) [spring-web-5.3.5.jar:5.3.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) [spring-web-5.3.5.jar:5.3.5]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) [spring-web-5.3.5.jar:5.3.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) [spring-web-5.3.5.jar:5.3.5]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) [spring-web-5.3.5.jar:5.3.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) [spring-web-5.3.5.jar:5.3.5]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:542) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:143) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:374) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:893) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1707) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) [?:?]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.44.jar:9.0.44]
+	at java.lang.Thread.run(Thread.java:829) [?:?]
+[INFO ] 2021-04-15 02:07:40.400 [http-nio-8080-exec-8] CarController - Request to create - CreateOrUpdateCarDto(userId=1, brand=OPEL, engineType=PETROL, plate=Nice).
+[DEBUG] 2021-04-15 02:07:40.412 [http-nio-8080-exec-8] CustomerService - Creating car - CreateOrUpdateCarDto(userId=1, brand=OPEL, engineType=PETROL, plate=Nice)
+[DEBUG] 2021-04-15 02:07:40.413 [http-nio-8080-exec-8] CustomerService - Getting user with id 1 from database
+[ERROR] 2021-04-15 02:07:40.420 [http-nio-8080-exec-8] CustomerService - Failed to get user with 1 from database
+[ERROR] 2021-04-15 02:07:40.421 [http-nio-8080-exec-8] CarController - Failed to created car - CreateOrUpdateCarDto(userId=1, brand=OPEL, engineType=PETROL, plate=Nice)
+com.rabbit.mechanic.exception.CustomerNotFoundException: Can't find any customer with the given id
 	at com.rabbit.mechanic.service.CarServiceImp.lambda$addNewCar$0(CarServiceImp.java:54) ~[classes/:?]
 	at java.util.Optional.orElseThrow(Optional.java:408) ~[?:?]
 	at com.rabbit.mechanic.service.CarServiceImp.addNewCar(CarServiceImp.java:52) ~[classes/:?]
@@ -7633,15 +8045,22 @@ com.rabbit.mechanic.exception.UserNotFoundException: Can't find any customer wit
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) [?:?]
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.44.jar:9.0.44]
 	at java.lang.Thread.run(Thread.java:829) [?:?]
-[INFO ] 2021-04-15 00:10:10.147 [http-nio-8080-exec-1] CustomerController - Request to get customer with id 1
-[DEBUG] 2021-04-15 00:10:10.148 [http-nio-8080-exec-1] CustomerService - Getting user with id 1 from database
-[ERROR] 2021-04-15 00:10:10.151 [http-nio-8080-exec-1] CustomerService - Failed to get user with 1 from database
-[ERROR] 2021-04-15 00:10:10.152 [http-nio-8080-exec-1] CustomerController - Failed to get customer with id 1
-com.rabbit.mechanic.exception.UserNotFoundException: Can't find any customer with the given id
-	at com.rabbit.mechanic.service.CustomerServiceImp.lambda$getCustomerById$0(CustomerServiceImp.java:78) ~[classes/:?]
+[INFO ] 2021-04-15 02:07:42.610 [http-nio-8080-exec-10] CustomerController - Request to create - CreateOrUpdateCustomerDto(firstName=Rabbit, lastName=Mechanic, address=Gosford Street, email=rabbit.lda@gmail.com, cellNumber=25578783).
+[DEBUG] 2021-04-15 02:07:42.616 [http-nio-8080-exec-10] CustomerService - Creating customer - CreateOrUpdateCustomerDto(firstName=Rabbit, lastName=Mechanic, address=Gosford Street, email=rabbit.lda@gmail.com, cellNumber=25578783)
+[INFO ] 2021-04-15 02:07:42.617 [http-nio-8080-exec-10] CustomerService - Persisting customer into database
+[INFO ] 2021-04-15 02:07:42.617 [http-nio-8080-exec-10] CustomerService - Saving customer on database
+[DEBUG] 2021-04-15 02:07:42.627 [http-nio-8080-exec-10] CustomerService - Retrieving created customer
+[INFO ] 2021-04-15 02:07:42.628 [http-nio-8080-exec-10] CustomerController - User created successfully. Retrieving created user with id 1
+[INFO ] 2021-04-15 02:07:45.230 [http-nio-8080-exec-2] RepairController - Request to create - CreateOrUpdateRepairDto(repairId=0, carId=1, repairName=Motor Change, repairDescription=oil 15W, startDate=Fri Jan 01 00:00:00 WET 2021, endDate=Sun Jan 10 00:00:00 WET 2021, price=30).
+[DEBUG] 2021-04-15 02:07:45.231 [http-nio-8080-exec-2] RepairService - Creating repair - CreateOrUpdateRepairDto(repairId=0, carId=1, repairName=Motor Change, repairDescription=oil 15W, startDate=Fri Jan 01 00:00:00 WET 2021, endDate=Sun Jan 10 00:00:00 WET 2021, price=30)
+[DEBUG] 2021-04-15 02:07:45.232 [http-nio-8080-exec-2] RepairService - Getting car with id 1 from database
+[ERROR] 2021-04-15 02:07:45.236 [http-nio-8080-exec-2] RepairService - Failed to get car with 1 from database
+[ERROR] 2021-04-15 02:07:45.237 [http-nio-8080-exec-2] RepairController - Failed to created repair - CreateOrUpdateRepairDto(repairId=0, carId=1, repairName=Motor Change, repairDescription=oil 15W, startDate=Fri Jan 01 00:00:00 WET 2021, endDate=Sun Jan 10 00:00:00 WET 2021, price=30)
+com.rabbit.mechanic.exception.CustomerNotFoundException: Can't find any car with the given id
+	at com.rabbit.mechanic.service.RepairServiceImp.lambda$createRepair$0(RepairServiceImp.java:54) ~[classes/:?]
 	at java.util.Optional.orElseThrow(Optional.java:408) ~[?:?]
-	at com.rabbit.mechanic.service.CustomerServiceImp.getCustomerById(CustomerServiceImp.java:76) ~[classes/:?]
-	at com.rabbit.mechanic.controller.CustomerController.getCustomerById(CustomerController.java:70) [classes/:?]
+	at com.rabbit.mechanic.service.RepairServiceImp.createRepair(RepairServiceImp.java:52) ~[classes/:?]
+	at com.rabbit.mechanic.controller.RepairController.createRepair(RepairController.java:45) [classes/:?]
 	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
 	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
 	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
@@ -7655,8 +8074,8 @@ com.rabbit.mechanic.exception.UserNotFoundException: Can't find any customer wit
 	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1060) [spring-webmvc-5.3.5.jar:5.3.5]
 	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:962) [spring-webmvc-5.3.5.jar:5.3.5]
 	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) [spring-webmvc-5.3.5.jar:5.3.5]
-	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898) [spring-webmvc-5.3.5.jar:5.3.5]
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:626) [tomcat-embed-core-9.0.44.jar:4.0.FR]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909) [spring-webmvc-5.3.5.jar:5.3.5]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:652) [tomcat-embed-core-9.0.44.jar:4.0.FR]
 	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) [spring-webmvc-5.3.5.jar:5.3.5]
 	at javax.servlet.http.HttpServlet.service(HttpServlet.java:733) [tomcat-embed-core-9.0.44.jar:4.0.FR]
 	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227) [tomcat-embed-core-9.0.44.jar:9.0.44]
@@ -7696,15 +8115,84 @@ com.rabbit.mechanic.exception.UserNotFoundException: Can't find any customer wit
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) [?:?]
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.44.jar:9.0.44]
 	at java.lang.Thread.run(Thread.java:829) [?:?]
-[INFO ] 2021-04-15 00:10:18.942 [http-nio-8080-exec-4] CustomerController - Request to get customer with id 2
-[DEBUG] 2021-04-15 00:10:18.942 [http-nio-8080-exec-4] CustomerService - Getting user with id 2 from database
-[ERROR] 2021-04-15 00:10:18.948 [http-nio-8080-exec-4] CustomerService - Failed to get user with 2 from database
-[ERROR] 2021-04-15 00:10:18.948 [http-nio-8080-exec-4] CustomerController - Failed to get customer with id 2
-com.rabbit.mechanic.exception.UserNotFoundException: Can't find any customer with the given id
-	at com.rabbit.mechanic.service.CustomerServiceImp.lambda$getCustomerById$0(CustomerServiceImp.java:78) ~[classes/:?]
-	at java.util.Optional.orElseThrow(Optional.java:408) ~[?:?]
-	at com.rabbit.mechanic.service.CustomerServiceImp.getCustomerById(CustomerServiceImp.java:76) ~[classes/:?]
-	at com.rabbit.mechanic.controller.CustomerController.getCustomerById(CustomerController.java:70) [classes/:?]
+[INFO ] 2021-04-15 02:07:47.112 [http-nio-8080-exec-3] CarController - Request to create - CreateOrUpdateCarDto(userId=1, brand=OPEL, engineType=PETROL, plate=Nice).
+[DEBUG] 2021-04-15 02:07:47.112 [http-nio-8080-exec-3] CustomerService - Creating car - CreateOrUpdateCarDto(userId=1, brand=OPEL, engineType=PETROL, plate=Nice)
+[DEBUG] 2021-04-15 02:07:47.113 [http-nio-8080-exec-3] CustomerService - Getting user with id 1 from database
+[INFO ] 2021-04-15 02:07:47.124 [http-nio-8080-exec-3] CustomerService - Persisting car into database
+[INFO ] 2021-04-15 02:07:47.125 [http-nio-8080-exec-3] CustomerService - Saving car on database
+[DEBUG] 2021-04-15 02:07:47.132 [http-nio-8080-exec-3] CustomerService - Retrieving created car
+[INFO ] 2021-04-15 02:07:47.133 [http-nio-8080-exec-3] CarController - Car created successfully. Retrieving created car with id 1
+[INFO ] 2021-04-15 02:07:49.192 [http-nio-8080-exec-4] RepairController - Request to create - CreateOrUpdateRepairDto(repairId=0, carId=1, repairName=Motor Change, repairDescription=oil 15W, startDate=Fri Jan 01 00:00:00 WET 2021, endDate=Sun Jan 10 00:00:00 WET 2021, price=30).
+[DEBUG] 2021-04-15 02:07:49.193 [http-nio-8080-exec-4] RepairService - Creating repair - CreateOrUpdateRepairDto(repairId=0, carId=1, repairName=Motor Change, repairDescription=oil 15W, startDate=Fri Jan 01 00:00:00 WET 2021, endDate=Sun Jan 10 00:00:00 WET 2021, price=30)
+[DEBUG] 2021-04-15 02:07:49.194 [http-nio-8080-exec-4] RepairService - Getting car with id 1 from database
+[INFO ] 2021-04-15 02:07:49.207 [http-nio-8080-exec-4] RepairService - Persisting repair into database
+[INFO ] 2021-04-15 02:07:49.207 [http-nio-8080-exec-4] RepairService - Saving repair on database
+[DEBUG] 2021-04-15 02:07:49.216 [http-nio-8080-exec-4] RepairService - Retrieving created repair
+[INFO ] 2021-04-15 02:07:49.217 [http-nio-8080-exec-4] RepairController - Repair created successfully. Retrieving created repair with id 1
+[INFO ] 2021-04-15 02:10:54.950 [http-nio-8080-exec-9] CarController - Request to create - CreateOrUpdateCarDto(userId=1, brand=NISSAN, engineType=PETROL, plate=Nice2).
+[DEBUG] 2021-04-15 02:10:54.951 [http-nio-8080-exec-9] CustomerService - Creating car - CreateOrUpdateCarDto(userId=1, brand=NISSAN, engineType=PETROL, plate=Nice2)
+[DEBUG] 2021-04-15 02:10:54.951 [http-nio-8080-exec-9] CustomerService - Getting user with id 1 from database
+[INFO ] 2021-04-15 02:10:54.955 [http-nio-8080-exec-9] CustomerService - Persisting car into database
+[INFO ] 2021-04-15 02:10:54.955 [http-nio-8080-exec-9] CustomerService - Saving car on database
+[DEBUG] 2021-04-15 02:10:54.959 [http-nio-8080-exec-9] CustomerService - Retrieving created car
+[INFO ] 2021-04-15 02:10:54.960 [http-nio-8080-exec-9] CarController - Car created successfully. Retrieving created car with id 2
+[INFO ] 2021-04-15 02:16:24.621 [restartedMain] RabbitMechanicApplication - Starting RabbitMechanicApplication using Java 11.0.10 on Antonios-MacBook-Pro.local with PID 27252 (/Users/tojo/Desktop/workplace/rabbit-mechanic/target/classes started by tojo in /Users/tojo/Desktop/workplace/rabbit-mechanic)
+[DEBUG] 2021-04-15 02:16:24.625 [restartedMain] RabbitMechanicApplication - Running with Spring Boot v2.4.4, Spring v5.3.5
+[INFO ] 2021-04-15 02:16:24.627 [restartedMain] RabbitMechanicApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2021-04-15 02:16:28.166 [restartedMain] RabbitMechanicApplication - Started RabbitMechanicApplication in 3.868 seconds (JVM running for 10.155)
+[INFO ] 2021-04-15 02:16:29.699 [http-nio-8080-exec-2] CustomerController - Request to create - CreateOrUpdateCustomerDto(firstName=Rabbit, lastName=Mechanic, address=Gosford Street, email=rabbit.lda@gmail.com, cellNumber=25578783).
+[DEBUG] 2021-04-15 02:16:29.711 [http-nio-8080-exec-2] CustomerService - Creating customer - CreateOrUpdateCustomerDto(firstName=Rabbit, lastName=Mechanic, address=Gosford Street, email=rabbit.lda@gmail.com, cellNumber=25578783)
+[INFO ] 2021-04-15 02:16:29.712 [http-nio-8080-exec-2] CustomerService - Persisting customer into database
+[INFO ] 2021-04-15 02:16:29.712 [http-nio-8080-exec-2] CustomerService - Saving customer on database
+[DEBUG] 2021-04-15 02:16:29.788 [http-nio-8080-exec-2] CustomerService - Retrieving created customer
+[INFO ] 2021-04-15 02:16:29.789 [http-nio-8080-exec-2] CustomerController - User created successfully. Retrieving created user with id 1
+[INFO ] 2021-04-15 02:16:31.492 [http-nio-8080-exec-3] CarController - Request to create - CreateOrUpdateCarDto(userId=1, brand=NISSAN, engineType=PETROL, plate=Nice).
+[DEBUG] 2021-04-15 02:16:31.507 [http-nio-8080-exec-3] CustomerService - Creating car - CreateOrUpdateCarDto(userId=1, brand=NISSAN, engineType=PETROL, plate=Nice)
+[DEBUG] 2021-04-15 02:16:31.508 [http-nio-8080-exec-3] CustomerService - Getting user with id 1 from database
+[INFO ] 2021-04-15 02:16:31.547 [http-nio-8080-exec-3] CustomerService - Persisting car into database
+[INFO ] 2021-04-15 02:16:31.547 [http-nio-8080-exec-3] CustomerService - Saving car on database
+[DEBUG] 2021-04-15 02:16:31.557 [http-nio-8080-exec-3] CustomerService - Retrieving created car
+[INFO ] 2021-04-15 02:16:31.558 [http-nio-8080-exec-3] CarController - Car created successfully. Retrieving created car with id 1
+[INFO ] 2021-04-15 02:16:33.424 [http-nio-8080-exec-4] RepairController - Request to create - CreateOrUpdateRepairDto(repairId=0, carId=1, repairName=Motor Change, repairDescription=oil 15W, startDate=Fri Jan 01 00:00:00 WET 2021, endDate=Sun Jan 10 00:00:00 WET 2021, price=30).
+[DEBUG] 2021-04-15 02:16:33.435 [http-nio-8080-exec-4] RepairService - Creating repair - CreateOrUpdateRepairDto(repairId=0, carId=1, repairName=Motor Change, repairDescription=oil 15W, startDate=Fri Jan 01 00:00:00 WET 2021, endDate=Sun Jan 10 00:00:00 WET 2021, price=30)
+[DEBUG] 2021-04-15 02:16:33.436 [http-nio-8080-exec-4] RepairService - Getting car with id 1 from database
+[INFO ] 2021-04-15 02:16:33.449 [http-nio-8080-exec-4] RepairService - Persisting repair into database
+[INFO ] 2021-04-15 02:16:33.449 [http-nio-8080-exec-4] RepairService - Saving repair on database
+[DEBUG] 2021-04-15 02:16:33.456 [http-nio-8080-exec-4] RepairService - Retrieving created repair
+[INFO ] 2021-04-15 02:16:33.457 [http-nio-8080-exec-4] RepairController - Repair created successfully. Retrieving created repair with id 1
+[INFO ] 2021-04-15 02:21:39.745 [http-nio-8080-exec-9] EmployeeController - Request to create - CreateUserDto{firstName='Rui', lastName='Racing', password='***'}.
+[DEBUG] 2021-04-15 02:21:39.749 [http-nio-8080-exec-9] EmployeeService - Creating employee - CreateUserDto{firstName='Rui', lastName='Racing', password='***'}
+[INFO ] 2021-04-15 02:21:39.750 [http-nio-8080-exec-9] EmployeeService - Persisting employee into database
+[INFO ] 2021-04-15 02:21:39.750 [http-nio-8080-exec-9] EmployeeService - Saving employee on database
+[DEBUG] 2021-04-15 02:21:39.759 [http-nio-8080-exec-9] EmployeeService - Retrieving created employee
+[INFO ] 2021-04-15 02:21:39.760 [http-nio-8080-exec-9] EmployeeController - Employee created successfully. Retrieving created employee with id 1
+[INFO ] 2021-04-15 02:22:47.295 [http-nio-8080-exec-4] EmployeeController - Request to create - CreateUserDto{firstName='Rui', lastName='Racing', password='***'}.
+[DEBUG] 2021-04-15 02:22:47.297 [http-nio-8080-exec-4] EmployeeService - Creating employee - CreateUserDto{firstName='Rui', lastName='Racing', password='***'}
+[INFO ] 2021-04-15 02:22:47.297 [http-nio-8080-exec-4] EmployeeService - Persisting employee into database
+[INFO ] 2021-04-15 02:22:47.298 [http-nio-8080-exec-4] EmployeeService - Saving employee on database
+[DEBUG] 2021-04-15 02:22:47.302 [http-nio-8080-exec-4] EmployeeService - Retrieving created employee
+[INFO ] 2021-04-15 02:22:47.302 [http-nio-8080-exec-4] EmployeeController - Employee created successfully. Retrieving created employee with id 2
+[INFO ] 2021-04-15 02:22:51.348 [http-nio-8080-exec-5] EmployeeController - Request to create - CreateUserDto{firstName='Rui', lastName='Racing', password='***'}.
+[DEBUG] 2021-04-15 02:22:51.349 [http-nio-8080-exec-5] EmployeeService - Creating employee - CreateUserDto{firstName='Rui', lastName='Racing', password='***'}
+[INFO ] 2021-04-15 02:22:51.349 [http-nio-8080-exec-5] EmployeeService - Persisting employee into database
+[INFO ] 2021-04-15 02:22:51.350 [http-nio-8080-exec-5] EmployeeService - Saving employee on database
+[ERROR] 2021-04-15 02:22:51.366 [http-nio-8080-exec-5] EmployeeService - Duplicated username - EmployeeEntity(employeeId=0, firstName=Rui, lastName=Racing, username=CoelhoStreet, password=soufixe, role=ADMIN)
+org.springframework.dao.DataIntegrityViolationException: could not execute statement; SQL [n/a]; constraint [employees.UK_3gqbimdf7fckjbwt1kcud141m]; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.convertHibernateAccessException(HibernateJpaDialect.java:276) ~[spring-orm-5.3.5.jar:5.3.5]
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.translateExceptionIfPossible(HibernateJpaDialect.java:233) ~[spring-orm-5.3.5.jar:5.3.5]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.translateExceptionIfPossible(AbstractEntityManagerFactoryBean.java:551) ~[spring-orm-5.3.5.jar:5.3.5]
+	at org.springframework.dao.support.ChainedPersistenceExceptionTranslator.translateExceptionIfPossible(ChainedPersistenceExceptionTranslator.java:61) ~[spring-tx-5.3.5.jar:5.3.5]
+	at org.springframework.dao.support.DataAccessUtils.translateIfNecessary(DataAccessUtils.java:242) ~[spring-tx-5.3.5.jar:5.3.5]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:152) ~[spring-tx-5.3.5.jar:5.3.5]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.5.jar:5.3.5]
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:174) ~[spring-data-jpa-2.4.6.jar:2.4.6]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.5.jar:5.3.5]
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97) ~[spring-aop-5.3.5.jar:5.3.5]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.5.jar:5.3.5]
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:215) ~[spring-aop-5.3.5.jar:5.3.5]
+	at com.sun.proxy.$Proxy120.save(Unknown Source) ~[?:?]
+	at com.rabbit.mechanic.service.EmployeeServiceImp.createEmployee(EmployeeServiceImp.java:55) [classes/:?]
+	at com.rabbit.mechanic.controller.EmployeeController.createEmployee(EmployeeController.java:46) [classes/:?]
 	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
 	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
 	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
@@ -7718,8 +8206,8 @@ com.rabbit.mechanic.exception.UserNotFoundException: Can't find any customer wit
 	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1060) [spring-webmvc-5.3.5.jar:5.3.5]
 	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:962) [spring-webmvc-5.3.5.jar:5.3.5]
 	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) [spring-webmvc-5.3.5.jar:5.3.5]
-	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898) [spring-webmvc-5.3.5.jar:5.3.5]
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:626) [tomcat-embed-core-9.0.44.jar:4.0.FR]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909) [spring-webmvc-5.3.5.jar:5.3.5]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:652) [tomcat-embed-core-9.0.44.jar:4.0.FR]
 	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) [spring-webmvc-5.3.5.jar:5.3.5]
 	at javax.servlet.http.HttpServlet.service(HttpServlet.java:733) [tomcat-embed-core-9.0.44.jar:4.0.FR]
 	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227) [tomcat-embed-core-9.0.44.jar:9.0.44]
@@ -7759,15 +8247,131 @@ com.rabbit.mechanic.exception.UserNotFoundException: Can't find any customer wit
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) [?:?]
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.44.jar:9.0.44]
 	at java.lang.Thread.run(Thread.java:829) [?:?]
-[INFO ] 2021-04-15 00:10:23.191 [http-nio-8080-exec-6] CustomerController - Request to get customer with id 3
-[DEBUG] 2021-04-15 00:10:23.192 [http-nio-8080-exec-6] CustomerService - Getting user with id 3 from database
-[ERROR] 2021-04-15 00:10:23.198 [http-nio-8080-exec-6] CustomerService - Failed to get user with 3 from database
-[ERROR] 2021-04-15 00:10:23.198 [http-nio-8080-exec-6] CustomerController - Failed to get customer with id 3
-com.rabbit.mechanic.exception.UserNotFoundException: Can't find any customer with the given id
-	at com.rabbit.mechanic.service.CustomerServiceImp.lambda$getCustomerById$0(CustomerServiceImp.java:78) ~[classes/:?]
-	at java.util.Optional.orElseThrow(Optional.java:408) ~[?:?]
-	at com.rabbit.mechanic.service.CustomerServiceImp.getCustomerById(CustomerServiceImp.java:76) ~[classes/:?]
-	at com.rabbit.mechanic.controller.CustomerController.getCustomerById(CustomerController.java:70) [classes/:?]
+Caused by: org.hibernate.exception.ConstraintViolationException: could not execute statement
+	at org.hibernate.exception.internal.SQLExceptionTypeDelegate.convert(SQLExceptionTypeDelegate.java:59) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:42) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:113) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:99) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:200) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.dialect.identity.GetGeneratedKeysDelegate.executeAndExtract(GetGeneratedKeysDelegate.java:57) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.id.insert.AbstractReturningDelegate.performInsert(AbstractReturningDelegate.java:43) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3195) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3801) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.action.internal.EntityIdentityInsertAction.execute(EntityIdentityInsertAction.java:84) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.engine.spi.ActionQueue.execute(ActionQueue.java:645) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.engine.spi.ActionQueue.addResolvedEntityInsertAction(ActionQueue.java:282) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.engine.spi.ActionQueue.addInsertAction(ActionQueue.java:263) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.engine.spi.ActionQueue.addAction(ActionQueue.java:317) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.event.internal.AbstractSaveEventListener.addInsertAction(AbstractSaveEventListener.java:330) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.event.internal.AbstractSaveEventListener.performSaveOrReplicate(AbstractSaveEventListener.java:287) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.event.internal.AbstractSaveEventListener.performSave(AbstractSaveEventListener.java:193) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.event.internal.AbstractSaveEventListener.saveWithGeneratedId(AbstractSaveEventListener.java:123) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.event.internal.DefaultPersistEventListener.entityIsTransient(DefaultPersistEventListener.java:185) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:128) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:55) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:93) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.internal.SessionImpl.firePersist(SessionImpl.java:720) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.internal.SessionImpl.persist(SessionImpl.java:706) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:566) ~[?:?]
+	at org.springframework.orm.jpa.ExtendedEntityManagerCreator$ExtendedEntityManagerInvocationHandler.invoke(ExtendedEntityManagerCreator.java:362) ~[spring-orm-5.3.5.jar:5.3.5]
+	at com.sun.proxy.$Proxy113.persist(Unknown Source) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:566) ~[?:?]
+	at org.springframework.orm.jpa.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler.invoke(SharedEntityManagerCreator.java:311) ~[spring-orm-5.3.5.jar:5.3.5]
+	at com.sun.proxy.$Proxy113.persist(Unknown Source) ~[?:?]
+	at org.springframework.data.jpa.repository.support.SimpleJpaRepository.save(SimpleJpaRepository.java:557) ~[spring-data-jpa-2.4.6.jar:2.4.6]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:566) ~[?:?]
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker$RepositoryFragmentMethodInvoker.lambda$new$0(RepositoryMethodInvoker.java:289) ~[spring-data-commons-2.4.6.jar:2.4.6]
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.doInvoke(RepositoryMethodInvoker.java:137) ~[spring-data-commons-2.4.6.jar:2.4.6]
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.invoke(RepositoryMethodInvoker.java:121) ~[spring-data-commons-2.4.6.jar:2.4.6]
+	at org.springframework.data.repository.core.support.RepositoryComposition$RepositoryFragments.invoke(RepositoryComposition.java:524) ~[spring-data-commons-2.4.6.jar:2.4.6]
+	at org.springframework.data.repository.core.support.RepositoryComposition.invoke(RepositoryComposition.java:285) ~[spring-data-commons-2.4.6.jar:2.4.6]
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport$ImplementationMethodExecutionInterceptor.invoke(RepositoryFactorySupport.java:531) ~[spring-data-commons-2.4.6.jar:2.4.6]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.5.jar:5.3.5]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:156) ~[spring-data-commons-2.4.6.jar:2.4.6]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:131) ~[spring-data-commons-2.4.6.jar:2.4.6]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.5.jar:5.3.5]
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:123) ~[spring-tx-5.3.5.jar:5.3.5]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:388) ~[spring-tx-5.3.5.jar:5.3.5]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119) ~[spring-tx-5.3.5.jar:5.3.5]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.5.jar:5.3.5]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137) ~[spring-tx-5.3.5.jar:5.3.5]
+	... 63 more
+Caused by: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'CoelhoStreet' for key 'employees.UK_3gqbimdf7fckjbwt1kcud141m'
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:117) ~[mysql-connector-java-8.0.23.jar:8.0.23]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-java-8.0.23.jar:8.0.23]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953) ~[mysql-connector-java-8.0.23.jar:8.0.23]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1092) ~[mysql-connector-java-8.0.23.jar:8.0.23]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1040) ~[mysql-connector-java-8.0.23.jar:8.0.23]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1347) ~[mysql-connector-java-8.0.23.jar:8.0.23]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:1025) ~[mysql-connector-java-8.0.23.jar:8.0.23]
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeUpdate(ProxyPreparedStatement.java:61) ~[HikariCP-3.4.5.jar:?]
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeUpdate(HikariProxyPreparedStatement.java) ~[HikariCP-3.4.5.jar:?]
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:197) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.dialect.identity.GetGeneratedKeysDelegate.executeAndExtract(GetGeneratedKeysDelegate.java:57) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.id.insert.AbstractReturningDelegate.performInsert(AbstractReturningDelegate.java:43) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3195) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3801) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.action.internal.EntityIdentityInsertAction.execute(EntityIdentityInsertAction.java:84) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.engine.spi.ActionQueue.execute(ActionQueue.java:645) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.engine.spi.ActionQueue.addResolvedEntityInsertAction(ActionQueue.java:282) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.engine.spi.ActionQueue.addInsertAction(ActionQueue.java:263) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.engine.spi.ActionQueue.addAction(ActionQueue.java:317) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.event.internal.AbstractSaveEventListener.addInsertAction(AbstractSaveEventListener.java:330) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.event.internal.AbstractSaveEventListener.performSaveOrReplicate(AbstractSaveEventListener.java:287) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.event.internal.AbstractSaveEventListener.performSave(AbstractSaveEventListener.java:193) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.event.internal.AbstractSaveEventListener.saveWithGeneratedId(AbstractSaveEventListener.java:123) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.event.internal.DefaultPersistEventListener.entityIsTransient(DefaultPersistEventListener.java:185) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:128) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:55) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:93) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.internal.SessionImpl.firePersist(SessionImpl.java:720) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at org.hibernate.internal.SessionImpl.persist(SessionImpl.java:706) ~[hibernate-core-5.4.29.Final.jar:5.4.29.Final]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:566) ~[?:?]
+	at org.springframework.orm.jpa.ExtendedEntityManagerCreator$ExtendedEntityManagerInvocationHandler.invoke(ExtendedEntityManagerCreator.java:362) ~[spring-orm-5.3.5.jar:5.3.5]
+	at com.sun.proxy.$Proxy113.persist(Unknown Source) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:566) ~[?:?]
+	at org.springframework.orm.jpa.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler.invoke(SharedEntityManagerCreator.java:311) ~[spring-orm-5.3.5.jar:5.3.5]
+	at com.sun.proxy.$Proxy113.persist(Unknown Source) ~[?:?]
+	at org.springframework.data.jpa.repository.support.SimpleJpaRepository.save(SimpleJpaRepository.java:557) ~[spring-data-jpa-2.4.6.jar:2.4.6]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:566) ~[?:?]
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker$RepositoryFragmentMethodInvoker.lambda$new$0(RepositoryMethodInvoker.java:289) ~[spring-data-commons-2.4.6.jar:2.4.6]
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.doInvoke(RepositoryMethodInvoker.java:137) ~[spring-data-commons-2.4.6.jar:2.4.6]
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.invoke(RepositoryMethodInvoker.java:121) ~[spring-data-commons-2.4.6.jar:2.4.6]
+	at org.springframework.data.repository.core.support.RepositoryComposition$RepositoryFragments.invoke(RepositoryComposition.java:524) ~[spring-data-commons-2.4.6.jar:2.4.6]
+	at org.springframework.data.repository.core.support.RepositoryComposition.invoke(RepositoryComposition.java:285) ~[spring-data-commons-2.4.6.jar:2.4.6]
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport$ImplementationMethodExecutionInterceptor.invoke(RepositoryFactorySupport.java:531) ~[spring-data-commons-2.4.6.jar:2.4.6]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.5.jar:5.3.5]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:156) ~[spring-data-commons-2.4.6.jar:2.4.6]
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:131) ~[spring-data-commons-2.4.6.jar:2.4.6]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.5.jar:5.3.5]
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:123) ~[spring-tx-5.3.5.jar:5.3.5]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:388) ~[spring-tx-5.3.5.jar:5.3.5]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119) ~[spring-tx-5.3.5.jar:5.3.5]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.5.jar:5.3.5]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137) ~[spring-tx-5.3.5.jar:5.3.5]
+	... 63 more
+[ERROR] 2021-04-15 02:22:51.385 [http-nio-8080-exec-5] EmployeeController - Failed to created employee - CreateUserDto{firstName='Rui', lastName='Racing', password='***'}
+com.rabbit.mechanic.exception.EmployeeAlreadyExistsException: Employee with the given username already exists
+	at com.rabbit.mechanic.service.EmployeeServiceImp.createEmployee(EmployeeServiceImp.java:59) ~[classes/:?]
+	at com.rabbit.mechanic.controller.EmployeeController.createEmployee(EmployeeController.java:46) [classes/:?]
 	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
 	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
 	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
@@ -7781,8 +8385,8 @@ com.rabbit.mechanic.exception.UserNotFoundException: Can't find any customer wit
 	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1060) [spring-webmvc-5.3.5.jar:5.3.5]
 	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:962) [spring-webmvc-5.3.5.jar:5.3.5]
 	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) [spring-webmvc-5.3.5.jar:5.3.5]
-	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898) [spring-webmvc-5.3.5.jar:5.3.5]
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:626) [tomcat-embed-core-9.0.44.jar:4.0.FR]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909) [spring-webmvc-5.3.5.jar:5.3.5]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:652) [tomcat-embed-core-9.0.44.jar:4.0.FR]
 	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) [spring-webmvc-5.3.5.jar:5.3.5]
 	at javax.servlet.http.HttpServlet.service(HttpServlet.java:733) [tomcat-embed-core-9.0.44.jar:4.0.FR]
 	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227) [tomcat-embed-core-9.0.44.jar:9.0.44]
@@ -7822,98 +8426,3 @@ com.rabbit.mechanic.exception.UserNotFoundException: Can't find any customer wit
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) [?:?]
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.44.jar:9.0.44]
 	at java.lang.Thread.run(Thread.java:829) [?:?]
-[INFO ] 2021-04-15 00:10:26.966 [http-nio-8080-exec-8] CustomerController - Request to get customer with id 4
-[DEBUG] 2021-04-15 00:10:26.967 [http-nio-8080-exec-8] CustomerService - Getting user with id 4 from database
-[ERROR] 2021-04-15 00:10:26.970 [http-nio-8080-exec-8] CustomerService - Failed to get user with 4 from database
-[ERROR] 2021-04-15 00:10:26.970 [http-nio-8080-exec-8] CustomerController - Failed to get customer with id 4
-com.rabbit.mechanic.exception.UserNotFoundException: Can't find any customer with the given id
-	at com.rabbit.mechanic.service.CustomerServiceImp.lambda$getCustomerById$0(CustomerServiceImp.java:78) ~[classes/:?]
-	at java.util.Optional.orElseThrow(Optional.java:408) ~[?:?]
-	at com.rabbit.mechanic.service.CustomerServiceImp.getCustomerById(CustomerServiceImp.java:76) ~[classes/:?]
-	at com.rabbit.mechanic.controller.CustomerController.getCustomerById(CustomerController.java:70) [classes/:?]
-	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
-	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
-	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
-	at java.lang.reflect.Method.invoke(Method.java:566) ~[?:?]
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:197) [spring-web-5.3.5.jar:5.3.5]
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:141) [spring-web-5.3.5.jar:5.3.5]
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106) [spring-webmvc-5.3.5.jar:5.3.5]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:894) [spring-webmvc-5.3.5.jar:5.3.5]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808) [spring-webmvc-5.3.5.jar:5.3.5]
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) [spring-webmvc-5.3.5.jar:5.3.5]
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1060) [spring-webmvc-5.3.5.jar:5.3.5]
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:962) [spring-webmvc-5.3.5.jar:5.3.5]
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) [spring-webmvc-5.3.5.jar:5.3.5]
-	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898) [spring-webmvc-5.3.5.jar:5.3.5]
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:626) [tomcat-embed-core-9.0.44.jar:4.0.FR]
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) [spring-webmvc-5.3.5.jar:5.3.5]
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:733) [tomcat-embed-core-9.0.44.jar:4.0.FR]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227) [tomcat-embed-core-9.0.44.jar:9.0.44]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) [tomcat-embed-core-9.0.44.jar:9.0.44]
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) [tomcat-embed-websocket-9.0.44.jar:9.0.44]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) [tomcat-embed-core-9.0.44.jar:9.0.44]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) [tomcat-embed-core-9.0.44.jar:9.0.44]
-	at org.apache.catalina.filters.CorsFilter.handleNonCORS(CorsFilter.java:352) [tomcat-embed-core-9.0.44.jar:9.0.44]
-	at org.apache.catalina.filters.CorsFilter.doFilter(CorsFilter.java:171) [tomcat-embed-core-9.0.44.jar:9.0.44]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) [tomcat-embed-core-9.0.44.jar:9.0.44]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) [tomcat-embed-core-9.0.44.jar:9.0.44]
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) [spring-web-5.3.5.jar:5.3.5]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) [spring-web-5.3.5.jar:5.3.5]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) [tomcat-embed-core-9.0.44.jar:9.0.44]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) [tomcat-embed-core-9.0.44.jar:9.0.44]
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) [spring-web-5.3.5.jar:5.3.5]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) [spring-web-5.3.5.jar:5.3.5]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) [tomcat-embed-core-9.0.44.jar:9.0.44]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) [tomcat-embed-core-9.0.44.jar:9.0.44]
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) [spring-web-5.3.5.jar:5.3.5]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) [spring-web-5.3.5.jar:5.3.5]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) [tomcat-embed-core-9.0.44.jar:9.0.44]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) [tomcat-embed-core-9.0.44.jar:9.0.44]
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202) [tomcat-embed-core-9.0.44.jar:9.0.44]
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97) [tomcat-embed-core-9.0.44.jar:9.0.44]
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:542) [tomcat-embed-core-9.0.44.jar:9.0.44]
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:143) [tomcat-embed-core-9.0.44.jar:9.0.44]
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) [tomcat-embed-core-9.0.44.jar:9.0.44]
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78) [tomcat-embed-core-9.0.44.jar:9.0.44]
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357) [tomcat-embed-core-9.0.44.jar:9.0.44]
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:374) [tomcat-embed-core-9.0.44.jar:9.0.44]
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) [tomcat-embed-core-9.0.44.jar:9.0.44]
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:893) [tomcat-embed-core-9.0.44.jar:9.0.44]
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1707) [tomcat-embed-core-9.0.44.jar:9.0.44]
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-9.0.44.jar:9.0.44]
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) [?:?]
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) [?:?]
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.44.jar:9.0.44]
-	at java.lang.Thread.run(Thread.java:829) [?:?]
-[INFO ] 2021-04-15 00:10:29.867 [http-nio-8080-exec-10] CustomerController - Request to get customers list - page: 0, size: 5
-[DEBUG] 2021-04-15 00:10:29.868 [http-nio-8080-exec-10] CustomerService - Getting all users from database
-[DEBUG] 2021-04-15 00:10:29.871 [http-nio-8080-exec-10] CustomerService - Convert list items from CustomerEntity to CustomerDetailsDto
-[INFO ] 2021-04-15 00:10:29.871 [http-nio-8080-exec-10] CustomerController - Retrieving customers list
-[INFO ] 2021-04-15 00:10:34.798 [http-nio-8080-exec-2] CustomerController - Request to create - CreateOrUpdateCustomerDto(firstName=Rabbit, lastName=Mechanic, address=Gosford Street, email=rabbit.lda@gmail.com, cellNumber=25578783).
-[DEBUG] 2021-04-15 00:10:34.799 [http-nio-8080-exec-2] CustomerService - Creating user - CreateOrUpdateCustomerDto(firstName=Rabbit, lastName=Mechanic, address=Gosford Street, email=rabbit.lda@gmail.com, cellNumber=25578783)
-[INFO ] 2021-04-15 00:10:34.799 [http-nio-8080-exec-2] CustomerService - Persisting user into database
-[INFO ] 2021-04-15 00:10:34.799 [http-nio-8080-exec-2] CustomerService - Saving user on database
-[DEBUG] 2021-04-15 00:10:34.806 [http-nio-8080-exec-2] CustomerService - Retrieving created user
-[INFO ] 2021-04-15 00:10:34.806 [http-nio-8080-exec-2] CustomerController - User created successfully. Retrieving created user with id 2
-[INFO ] 2021-04-15 00:10:41.438 [http-nio-8080-exec-1] CustomerController - Request to get customer with id 2
-[DEBUG] 2021-04-15 00:10:41.438 [http-nio-8080-exec-1] CustomerService - Getting user with id 2 from database
-[DEBUG] 2021-04-15 00:10:41.442 [http-nio-8080-exec-1] CustomerService - Retrieving got user
-[INFO ] 2021-04-15 00:10:41.442 [http-nio-8080-exec-1] CustomerController - Retrieving customer with id 2
-[INFO ] 2021-04-15 00:10:51.711 [http-nio-8080-exec-3] CustomerController - Request to get customers list - page: 0, size: 5
-[DEBUG] 2021-04-15 00:10:51.711 [http-nio-8080-exec-3] CustomerService - Getting all users from database
-[DEBUG] 2021-04-15 00:10:51.720 [http-nio-8080-exec-3] CustomerService - Convert list items from CustomerEntity to CustomerDetailsDto
-[INFO ] 2021-04-15 00:10:51.721 [http-nio-8080-exec-3] CustomerController - Retrieving customers list
-[INFO ] 2021-04-15 00:10:58.600 [http-nio-8080-exec-4] CarController - Request to create - CreateOrUpdateCarDto(userId=2, brand=OPEL, engineType=PETROL, plate=Nice).
-[DEBUG] 2021-04-15 00:10:58.600 [http-nio-8080-exec-4] CustomerService - Creating car - CreateOrUpdateCarDto(userId=2, brand=OPEL, engineType=PETROL, plate=Nice)
-[DEBUG] 2021-04-15 00:10:58.600 [http-nio-8080-exec-4] CustomerService - Getting user with id 2 from database
-[INFO ] 2021-04-15 00:10:58.605 [http-nio-8080-exec-4] CustomerService - Persisting car into database
-[INFO ] 2021-04-15 00:10:58.605 [http-nio-8080-exec-4] CustomerService - Saving car on database
-[DEBUG] 2021-04-15 00:10:58.613 [http-nio-8080-exec-4] CustomerService - Retrieving created car
-[INFO ] 2021-04-15 00:10:58.614 [http-nio-8080-exec-4] CarController - Car created successfully. Retrieving created car with id 1
-[INFO ] 2021-04-15 00:12:09.592 [http-nio-8080-exec-7] RepairController - Request to create - CreateOrUpdateRepairDto(repairId=0, carId=1, repairName=Motor Change, repairDescription=oil 15W, startDate=Fri Jan 01 00:00:00 WET 2021, endDate=Sun Jan 10 00:00:00 WET 2021, price=30).
-[DEBUG] 2021-04-15 00:12:09.601 [http-nio-8080-exec-7] RepairService - Creating repair - CreateOrUpdateRepairDto(repairId=0, carId=1, repairName=Motor Change, repairDescription=oil 15W, startDate=Fri Jan 01 00:00:00 WET 2021, endDate=Sun Jan 10 00:00:00 WET 2021, price=30)
-[DEBUG] 2021-04-15 00:12:09.602 [http-nio-8080-exec-7] RepairService - Getting car with id 1 from database
-[INFO ] 2021-04-15 00:12:09.615 [http-nio-8080-exec-7] RepairService - Persisting repair into database
-[INFO ] 2021-04-15 00:12:09.615 [http-nio-8080-exec-7] RepairService - Saving repair on database
-[DEBUG] 2021-04-15 00:12:09.626 [http-nio-8080-exec-7] RepairService - Retrieving created repair
-[INFO ] 2021-04-15 00:12:09.627 [http-nio-8080-exec-7] RepairController - Repair created successfully. Retrieving created repair with id 1
