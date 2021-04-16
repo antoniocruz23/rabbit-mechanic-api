@@ -24,5 +24,5 @@ public class UpdateEmployeeDto {
     private String username;
 
     @NotNull(message = "Must have role")
-    private EmployeeRoles role;
+    private EmployeeRoles roles;
 }

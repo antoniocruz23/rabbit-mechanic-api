@@ -50,7 +50,7 @@ public class EmployeeController {
         } catch (Exception e) {
             // With all others exceptions we log them and throw a generic exception
             LOGGER.error("Failed to created employee - {}", createEmployeeDto, e);
-            throw new RabbitMechanicException(ErrorMessages.OPERATION_FAILED, e);
+            throw new RabbitMechanicException(ErrorMessages.EMPLOYEE_ALREADY_EXISTS, e);
         }
 
         LOGGER.info("Employee created successfully. Retrieving created employee with id {}", employeeDetailsDto.getEmployeeId());
@@ -75,7 +75,7 @@ public class EmployeeController {
         } catch (Exception e) {
             // With all others exceptions we log them and throw a generic exception
             LOGGER.error("Failed to get employee with id {}", employeeId, e);
-            throw new RabbitMechanicException(ErrorMessages.OPERATION_FAILED, e);
+                throw new RabbitMechanicException(ErrorMessages.EMPLOYEE_NOT_FOUND, e);
         }
 
         LOGGER.info("Retrieved employee with id {}", employeeId);
@@ -127,7 +127,7 @@ public class EmployeeController {
         } catch (Exception e) {
             // With all others exceptions we log them and throw a generic exception
             LOGGER.error("Failed to update employee with id {} - {}", employeeId, updateEmployeeDto, e);
-            throw new RabbitMechanicException(ErrorMessages.OPERATION_FAILED, e);
+            throw new RabbitMechanicException(ErrorMessages.EMPLOYEE_NOT_FOUND, e);
         }
 
         LOGGER.info("Employee with id {} updated successfully. Retrieving updated data", employeeId);
@@ -151,7 +151,7 @@ public class EmployeeController {
         } catch (Exception e) {
             // With all others exceptions we log them and throw a generic exception
             LOGGER.error("Failed to delete employee with id {}", employeeId, e);
-            throw new RabbitMechanicException(ErrorMessages.OPERATION_FAILED, e);
+            throw new RabbitMechanicException(ErrorMessages.EMPLOYEE_NOT_FOUND, e);
         }
 
         LOGGER.info("Employee with id {} deleted successfully", employeeId);

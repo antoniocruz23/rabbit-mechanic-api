@@ -49,7 +49,7 @@ public class RepairController {
         } catch (Exception e) {
             // With all others exceptions we log them and throw a generic exception
             LOGGER.error("Failed to created repair - {}", createRepairDto, e);
-            throw new RabbitMechanicException(ErrorMessages.OPERATION_FAILED, e);
+            throw new RabbitMechanicException(ErrorMessages.REPAIR_ALREADY_EXISTS, e);
         }
 
         LOGGER.info("Repair created successfully. Retrieving created repair with id {}", repairDetailsDto.getRepairId());
@@ -74,7 +74,7 @@ public class RepairController {
         } catch (Exception e) {
             // With all others exceptions we log them and throw a generic exception
             LOGGER.error("Failed to get repair with id {}", repairId, e);
-            throw new RabbitMechanicException(ErrorMessages.OPERATION_FAILED, e);
+            throw new RabbitMechanicException(ErrorMessages.REPAIR_NOT_FOUND, e);
         }
 
         LOGGER.info("Retrieving repair with id {}", repairId);
@@ -126,7 +126,7 @@ public class RepairController {
         } catch (Exception e) {
             // With all others exceptions we log them and throw a generic exception
             LOGGER.error("Failed to update repair with id {} - {}", repairId, updateRepairDto, e);
-            throw new RabbitMechanicException(ErrorMessages.OPERATION_FAILED, e);
+            throw new RabbitMechanicException(ErrorMessages.REPAIR_NOT_FOUND, e);
         }
 
         LOGGER.info("Repair with id {} updated successfully. Retrieving updated data", repairId);
@@ -150,7 +150,7 @@ public class RepairController {
         } catch (Exception e) {
             // With all others exceptions we log them and throw a generic exception
             LOGGER.error("Failed to delete repair with id {}", repairId, e);
-            throw new RabbitMechanicException(ErrorMessages.OPERATION_FAILED, e);
+            throw new RabbitMechanicException(ErrorMessages.REPAIR_NOT_FOUND, e);
         }
 
         LOGGER.info("Repair with id {} deleted successfully", repairId);

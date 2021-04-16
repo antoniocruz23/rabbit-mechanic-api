@@ -1,5 +1,6 @@
 package com.rabbit.mechanic.converter;
 
+import com.rabbit.mechanic.command.auth.PrincipalDto;
 import com.rabbit.mechanic.command.employee.CreateEmployeeDto;
 import com.rabbit.mechanic.command.employee.EmployeeDetailsDto;
 import com.rabbit.mechanic.persistence.entity.EmployeeEntity;
@@ -19,7 +20,7 @@ public class EmployeeConverter {
                 .firstName(createEmployeeDto.getFirstName())
                 .lastName(createEmployeeDto.getLastName())
                 .username(createEmployeeDto.getUsername())
-                .password(createEmployeeDto.getPassword())
+                .encryptedPassword(createEmployeeDto.getPassword())
                 .role(createEmployeeDto.getRole())
                 .build();
     }
@@ -39,4 +40,17 @@ public class EmployeeConverter {
                 .build();
     }
 
+    /**
+     * Convert from {@link EmployeeEntity} to {@link PrincipalDto}
+     * @param employeeEntity
+     * @return {@link PrincipalDto}
+     */
+    public static PrincipalDto fromEmployeeEntityToPrincipalDto(EmployeeEntity employeeEntity) {
+        return PrincipalDto.builder()
+                .employeeId(employeeEntity.getEmployeeId())
+                .firstName(employeeEntity.getFirstName())
+                .lastName(employeeEntity.getLastName())
+                .employeeRole(employeeEntity.getRole())
+                .build();
+    }
 }

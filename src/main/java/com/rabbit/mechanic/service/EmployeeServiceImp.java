@@ -18,6 +18,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -32,9 +33,12 @@ public class EmployeeServiceImp implements EmployeeService {
     // Logger
     private static final Logger LOGGER = LogManager.getLogger(EmployeeService.class);
     private final EmployeeRepository employeeRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public EmployeeServiceImp(EmployeeRepository employeeRepository) {
+
+    public EmployeeServiceImp(EmployeeRepository employeeRepository, PasswordEncoder passwordEncoder) {
         this.employeeRepository = employeeRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     /**
@@ -46,6 +50,11 @@ public class EmployeeServiceImp implements EmployeeService {
         // Build EmployeeEntity
         LOGGER.debug("Creating employee - {}", createEmployeeDto);
         EmployeeEntity employeeEntity = EmployeeConverter.fromCreateEmployeeDtoToEmployeeEntity(createEmployeeDto);
+
+        // Encrypt password
+        String encryptedPassword = passwordEncoder.encode(createEmployeeDto.getPassword());
+        // Set encrypted password
+        employeeEntity.setEncryptedPassword(encryptedPassword);
 
         // Persist employee into database
         LOGGER.info("Persisting employee into database");
@@ -139,7 +148,7 @@ public class EmployeeServiceImp implements EmployeeService {
         employeeEntity.setFirstName(updateEmployeeDto.getFirstName());
         employeeEntity.setLastName(updateEmployeeDto.getLastName());
         employeeEntity.setUsername(updateEmployeeDto.getUsername());
-        employeeEntity.setRole(updateEmployeeDto.getRole());
+        employeeEntity.setRole(updateEmployeeDto.getRoles());
 
         // Save changes
         LOGGER.info("Saving updates from employee with id {}", employeeId);

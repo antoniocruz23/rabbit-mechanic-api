@@ -16,4 +16,5 @@ public class Error {
     String message;
     String method;
     String path;
+    String exception;
 }

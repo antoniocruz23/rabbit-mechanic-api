@@ -49,7 +49,7 @@ public class CustomerController {
         } catch (Exception e) {
             // With all others exceptions we log them and throw a generic exception
             LOGGER.error("Failed to created customer - {}", createCustomerDto, e);
-            throw new RabbitMechanicException(ErrorMessages.OPERATION_FAILED, e);
+            throw new RabbitMechanicException(ErrorMessages.CUSTOMER_ALREADY_EXISTS, e);
         }
 
         LOGGER.info("User created successfully. Retrieving created user with id {}", customerDetailsDto.getCustomerId());
@@ -74,7 +74,7 @@ public class CustomerController {
         } catch (Exception e) {
             // With all others exceptions we log them and throw a generic exception
             LOGGER.error("Failed to get customer with id {}", customerId, e);
-            throw new RabbitMechanicException(ErrorMessages.OPERATION_FAILED, e);
+            throw new RabbitMechanicException(ErrorMessages.CUSTOMER_NOT_FOUND, e);
         }
 
         LOGGER.info("Retrieving customer with id {}", customerId);
@@ -126,7 +126,7 @@ public class CustomerController {
         } catch (Exception e) {
             // With all others exceptions we log them and throw a generic exception
             LOGGER.error("Failed to update customer with id {} - {}", customerId, updateCustomerDto, e);
-            throw new RabbitMechanicException(ErrorMessages.OPERATION_FAILED, e);
+            throw new RabbitMechanicException(ErrorMessages.CUSTOMER_NOT_FOUND, e);
         }
 
         LOGGER.info("Customer with id {} updated successfully. Retrieving updated customer", customerId);
@@ -150,7 +150,7 @@ public class CustomerController {
         } catch (Exception e) {
             // With all others exceptions we log them and throw a generic exception
             LOGGER.error("Failed to delete customer with id {}", customerId, e);
-            throw new RabbitMechanicException(ErrorMessages.OPERATION_FAILED, e);
+            throw new RabbitMechanicException(ErrorMessages.CUSTOMER_NOT_FOUND, e);
         }
         LOGGER.info("Customer with id {} deleted successfully", customerId);
         return new ResponseEntity(OK);

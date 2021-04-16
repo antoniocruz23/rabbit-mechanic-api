@@ -17,7 +17,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Entity
 @Table(name = "cars")
-public class CarEntity extends AbstractEntity {
+public class CarEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,7 +27,7 @@ public class CarEntity extends AbstractEntity {
     @JoinColumn(name = "customerId", nullable = false)
     private CustomerEntity customerEntity;
 
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private CarBrands brand;
 

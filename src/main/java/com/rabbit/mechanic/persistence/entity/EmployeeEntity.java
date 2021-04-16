@@ -18,7 +18,7 @@ import javax.print.attribute.standard.RequestingUserName;
 @AllArgsConstructor
 @Entity
 @Table(name = "employees")
-public class EmployeeEntity extends AbstractEntity {
+public class EmployeeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,7 +34,7 @@ public class EmployeeEntity extends AbstractEntity {
     private String username;
 
     @Column(nullable = false)
-    private String password;
+    private String encryptedPassword;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)

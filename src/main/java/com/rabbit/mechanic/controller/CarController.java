@@ -47,7 +47,7 @@ public class CarController {
         } catch (Exception e) {
             // With all others exceptions we log them and throw a generic exception
             LOGGER.error("Failed to created car - {}", createCarDto, e);
-            throw new RabbitMechanicException(ErrorMessages.OPERATION_FAILED, e);
+            throw new RabbitMechanicException(ErrorMessages.CAR_ALREADY_EXISTS, e);
         }
 
         LOGGER.info("Car created successfully. Retrieving created car with id {}", carDetails.getCarId());
@@ -72,7 +72,7 @@ public class CarController {
         } catch (Exception e) {
             // With all others exceptions we log them and throw a generic exception
             LOGGER.error("Failed to get car with id {}", carId, e);
-            throw new RabbitMechanicException(ErrorMessages.OPERATION_FAILED, e);
+            throw new RabbitMechanicException(ErrorMessages.CAR_NOT_FOUND, e);
         }
 
         LOGGER.info("Retrieving car with id - {}", carDetails.getCarId());
@@ -124,7 +124,7 @@ public class CarController {
         } catch (Exception e) {
             // With all others exceptions we log them and throw a generic exception
             LOGGER.error("Failed to update car with id {} - {}", carId, updateCarDto, e);
-            throw new RabbitMechanicException(ErrorMessages.OPERATION_FAILED, e);
+            throw new RabbitMechanicException(ErrorMessages.CAR_NOT_FOUND, e);
         }
 
         LOGGER.info("Car with id {} updated successfully. Retrieving updated data", carId);
@@ -148,7 +148,7 @@ public class CarController {
         } catch (Exception e) {
             // With all others exceptions we log them and throw a generic exception
             LOGGER.error("Failed to delete car with id {}", carId, e);
-            throw new RabbitMechanicException(ErrorMessages.OPERATION_FAILED, e);
+            throw new RabbitMechanicException(ErrorMessages.CAR_NOT_FOUND, e);
         }
 
         LOGGER.info("Car with id {} deleted successfully", carId);

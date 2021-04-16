@@ -18,7 +18,7 @@ import java.util.Date;
 @AllArgsConstructor
 @Entity
 @Table(name = "repairs")
-public class RepairEntity extends AbstractEntity {
+public class RepairEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
