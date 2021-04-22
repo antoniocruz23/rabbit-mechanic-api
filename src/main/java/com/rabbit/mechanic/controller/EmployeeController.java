@@ -11,6 +11,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -22,6 +23,7 @@ import static org.springframework.http.HttpStatus.OK;
  */
 @RestController
 @RequestMapping("/employees")
+@PreAuthorize("@authorized.hasRole(\"ADMIN\")")
 public class EmployeeController {
 
     // Logger
@@ -44,13 +46,15 @@ public class EmployeeController {
         EmployeeDetailsDto employeeDetailsDto;
         try {
             employeeDetailsDto =  employeeServiceImp.createEmployee(createEmployeeDto);
+
         } catch (RabbitMechanicException e) {
             // Since RabbitMechanicException exceptions are thrown by us, we just throw them
             throw e;
+
         } catch (Exception e) {
             // With all others exceptions we log them and throw a generic exception
             LOGGER.error("Failed to created employee - {}", createEmployeeDto, e);
-            throw new RabbitMechanicException(ErrorMessages.EMPLOYEE_ALREADY_EXISTS, e);
+            throw new RabbitMechanicException(ErrorMessages.OPERATION_FAILED, e);
         }
 
         LOGGER.info("Employee created successfully. Retrieving created employee with id {}", employeeDetailsDto.getEmployeeId());
@@ -63,19 +67,23 @@ public class EmployeeController {
      * @return {@link EmployeeDetailsDto} the employee wanted and Ok httpStatus
      */
     @GetMapping("/{employeeId}")
+    @PreAuthorize("@authorized.hasRole(\"ADMIN\") || " +
+                "@authorized.isEmployee(#employeeId)")
     public ResponseEntity<EmployeeDetailsDto> getEmployeeById(@PathVariable long employeeId) {
 
         LOGGER.info("Request to get employee with id {}", employeeId);
         EmployeeDetailsDto employeeDetailsDto;
         try {
             employeeDetailsDto = employeeServiceImp.getEmployeeById(employeeId);
+
         } catch (RabbitMechanicException e) {
             // Since RabbitMechanicException exceptions are thrown by us, we just throw them
             throw e;
+
         } catch (Exception e) {
             // With all others exceptions we log them and throw a generic exception
             LOGGER.error("Failed to get employee with id {}", employeeId, e);
-                throw new RabbitMechanicException(ErrorMessages.EMPLOYEE_NOT_FOUND, e);
+                throw new RabbitMechanicException(ErrorMessages.OPERATION_FAILED, e);
         }
 
         LOGGER.info("Retrieved employee with id {}", employeeId);
@@ -94,9 +102,11 @@ public class EmployeeController {
         Paginated<EmployeeDetailsDto> employeeList;
         try {
             employeeList = employeeServiceImp.getEmployeesList(page, size);
+
         } catch (RabbitMechanicException e) {
             // Since RabbitMechanicException exceptions are thrown by us, we just throw them
             throw e;
+
         } catch (Exception e) {
             // With all others exceptions we log them and throw a generic exception
             LOGGER.error("Failed to get employees list", e);
@@ -114,6 +124,7 @@ public class EmployeeController {
      * @return {@link EmployeeDetailsDto} employee updated and Ok httpStatus
      */
     @PutMapping("/{employeeId}")
+    @PreAuthorize("@authorized.hasRole(\"ADMIN\")")
     public ResponseEntity<EmployeeDetailsDto> updateEmployee(@PathVariable long employeeId,
                                                  @Valid @RequestBody UpdateEmployeeDto updateEmployeeDto) {
 
@@ -121,13 +132,15 @@ public class EmployeeController {
         EmployeeDetailsDto employeeDetailsDto;
         try {
             employeeDetailsDto = employeeServiceImp.updateEmployee(employeeId, updateEmployeeDto);
+
         } catch (RabbitMechanicException e) {
             // Since RabbitMechanicException exceptions are thrown by us, we just throw them
             throw e;
+
         } catch (Exception e) {
             // With all others exceptions we log them and throw a generic exception
             LOGGER.error("Failed to update employee with id {} - {}", employeeId, updateEmployeeDto, e);
-            throw new RabbitMechanicException(ErrorMessages.EMPLOYEE_NOT_FOUND, e);
+            throw new RabbitMechanicException(ErrorMessages.OPERATION_FAILED, e);
         }
 
         LOGGER.info("Employee with id {} updated successfully. Retrieving updated data", employeeId);
@@ -145,13 +158,15 @@ public class EmployeeController {
         LOGGER.info("Request to delete employee with id {}", employeeId);
         try {
             employeeServiceImp.deleteEmployee(employeeId);
+
         } catch (RabbitMechanicException e) {
             // Since RabbitMechanicException exceptions are thrown by us, we just throw them
             throw e;
+
         } catch (Exception e) {
             // With all others exceptions we log them and throw a generic exception
             LOGGER.error("Failed to delete employee with id {}", employeeId, e);
-            throw new RabbitMechanicException(ErrorMessages.EMPLOYEE_NOT_FOUND, e);
+            throw new RabbitMechanicException(ErrorMessages.OPERATION_FAILED, e);
         }
 
         LOGGER.info("Employee with id {} deleted successfully", employeeId);

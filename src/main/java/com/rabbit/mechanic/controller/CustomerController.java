@@ -10,6 +10,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -21,6 +22,8 @@ import static org.springframework.http.HttpStatus.OK;
  */
 @RestController
 @RequestMapping("/customers")
+@PreAuthorize("@authorized.hasRole(\"RECEPTIONIST\") ||" +
+        "@authorized.hasRole(\"ADMIN\")")
 public class CustomerController {
 
     // Logger
@@ -43,13 +46,15 @@ public class CustomerController {
         CustomerDetailsDto customerDetailsDto;
         try {
             customerDetailsDto = customerService.createCustomer(createCustomerDto);
+
         } catch (RabbitMechanicException e) {
             // Since RabbitMechanicException exceptions are thrown by us, we just throw them
             throw e;
+
         } catch (Exception e) {
             // With all others exceptions we log them and throw a generic exception
             LOGGER.error("Failed to created customer - {}", createCustomerDto, e);
-            throw new RabbitMechanicException(ErrorMessages.CUSTOMER_ALREADY_EXISTS, e);
+            throw new RabbitMechanicException(ErrorMessages.OPERATION_FAILED, e);
         }
 
         LOGGER.info("User created successfully. Retrieving created user with id {}", customerDetailsDto.getCustomerId());
@@ -68,13 +73,15 @@ public class CustomerController {
         CustomerDetailsDto customerDetailsDto;
         try {
             customerDetailsDto = customerService.getCustomerById(customerId);
+
         } catch (RabbitMechanicException e) {
             // Since RabbitMechanicException exceptions are thrown by us, we just throw them
             throw e;
+
         } catch (Exception e) {
             // With all others exceptions we log them and throw a generic exception
             LOGGER.error("Failed to get customer with id {}", customerId, e);
-            throw new RabbitMechanicException(ErrorMessages.CUSTOMER_NOT_FOUND, e);
+            throw new RabbitMechanicException(ErrorMessages.OPERATION_FAILED, e);
         }
 
         LOGGER.info("Retrieving customer with id {}", customerId);
@@ -93,9 +100,11 @@ public class CustomerController {
         Paginated<CustomerDetailsDto> customersList;
         try {
             customersList = customerService.getCustomerList(page, size);
+
         } catch (RabbitMechanicException e) {
             // Since RabbitMechanicException exceptions are thrown by us, we just throw them
             throw e;
+
         } catch (Exception e) {
             // With all others exceptions we log them and throw a generic exception
             LOGGER.error("Failed to get customers list", e);
@@ -120,13 +129,15 @@ public class CustomerController {
         CustomerDetailsDto customerDetailsDto;
         try {
             customerDetailsDto = customerService.updateCustomer(customerId, updateCustomerDto);
+
         } catch (RabbitMechanicException e) {
             // Since RabbitMechanicException exceptions are thrown by us, we just throw them
             throw e;
+
         } catch (Exception e) {
             // With all others exceptions we log them and throw a generic exception
             LOGGER.error("Failed to update customer with id {} - {}", customerId, updateCustomerDto, e);
-            throw new RabbitMechanicException(ErrorMessages.CUSTOMER_NOT_FOUND, e);
+            throw new RabbitMechanicException(ErrorMessages.OPERATION_FAILED, e);
         }
 
         LOGGER.info("Customer with id {} updated successfully. Retrieving updated customer", customerId);
@@ -144,13 +155,15 @@ public class CustomerController {
         LOGGER.info("Request to delete customer with id {}", customerId);
         try {
             customerService.deleteCustomer(customerId);
+
         } catch (RabbitMechanicException e) {
             // Since RabbitMechanicException exceptions are thrown by us, we just throw them
             throw e;
+
         } catch (Exception e) {
             // With all others exceptions we log them and throw a generic exception
             LOGGER.error("Failed to delete customer with id {}", customerId, e);
-            throw new RabbitMechanicException(ErrorMessages.CUSTOMER_NOT_FOUND, e);
+            throw new RabbitMechanicException(ErrorMessages.OPERATION_FAILED, e);
         }
         LOGGER.info("Customer with id {} deleted successfully", customerId);
         return new ResponseEntity(OK);

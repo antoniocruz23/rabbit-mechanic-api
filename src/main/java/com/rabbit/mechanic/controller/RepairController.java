@@ -10,6 +10,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -21,6 +22,8 @@ import static org.springframework.http.HttpStatus.OK;
  */
 @RestController
 @RequestMapping("/repairs")
+@PreAuthorize("@authorized.hasRole(\"MECHANIC\") ||" +
+        "@authorized.hasRole(\"ADMIN\")")
 public class RepairController {
 
     // Logger
@@ -43,13 +46,15 @@ public class RepairController {
         RepairDetailsDto repairDetailsDto;
         try {
             repairDetailsDto = repairServiceImp.createRepair(createRepairDto);
+
         } catch (RabbitMechanicException e) {
             // Since RabbitMechanicException exceptions are thrown by us, we just throw them
             throw e;
+
         } catch (Exception e) {
             // With all others exceptions we log them and throw a generic exception
             LOGGER.error("Failed to created repair - {}", createRepairDto, e);
-            throw new RabbitMechanicException(ErrorMessages.REPAIR_ALREADY_EXISTS, e);
+            throw new RabbitMechanicException(ErrorMessages.OPERATION_FAILED, e);
         }
 
         LOGGER.info("Repair created successfully. Retrieving created repair with id {}", repairDetailsDto.getRepairId());
@@ -62,23 +67,56 @@ public class RepairController {
      * @return {@link RepairDetailsDto} the repair wanted and Ok httpStatus
      */
     @GetMapping("/{repairId}")
+    @PreAuthorize("@authorized.hasRole(\"MECHANIC\") ||" +
+                "@authorized.hasRole(\"RECEPTIONIST\") ||" +
+                "@authorized.hasRole(\"ADMIN\")")
     public ResponseEntity<RepairDetailsDto> getRepairById(@PathVariable long repairId) {
 
         LOGGER.info("Request to get repair with id {}", repairId);
         RepairDetailsDto repairDetailsDto;
         try {
             repairDetailsDto = repairServiceImp.getRepairById(repairId);
+
         } catch (RabbitMechanicException e) {
             // Since RabbitMechanicException exceptions are thrown by us, we just throw them
             throw e;
+
         } catch (Exception e) {
             // With all others exceptions we log them and throw a generic exception
             LOGGER.error("Failed to get repair with id {}", repairId, e);
-            throw new RabbitMechanicException(ErrorMessages.REPAIR_NOT_FOUND, e);
+            throw new RabbitMechanicException(ErrorMessages.OPERATION_FAILED, e);
         }
 
         LOGGER.info("Retrieving repair with id {}", repairId);
         return new ResponseEntity<>(repairDetailsDto, OK);
+    }
+
+    /**
+     * Get Repairs List By Status
+     * @return {@link RepairDetailsDto} list of all repairs and Ok httpStatus
+     */
+    @GetMapping("/status")
+    public ResponseEntity<Paginated<RepairDetailsDto>> getRepairsListByStatus(@RequestParam(defaultValue = "0") int page,
+                                                                              @RequestParam(defaultValue = "5") int size,
+                                                                              @RequestParam(name = "only-actives", defaultValue = "true") boolean onlyActives) {
+
+        LOGGER.info("Request to get repairs list - page: {}, size: {}", page, size);
+        Paginated<RepairDetailsDto> repairsList;
+        try {
+            repairsList = repairServiceImp.getRepairsListByStatus(page, size, onlyActives);
+
+        } catch (RabbitMechanicException e) {
+            // Since RabbitMechanicException exceptions are thrown by us, we just throw them
+            throw e;
+
+        } catch (Exception e) {
+            // With all others exceptions we log them and throw a generic exception
+            LOGGER.error("Failed to get repairs list", e);
+            throw new RabbitMechanicException(ErrorMessages.OPERATION_FAILED, e);
+        }
+
+        LOGGER.info("Retrieving repairs list");
+        return new ResponseEntity<>(repairsList, HttpStatus.OK);
     }
 
     /**
@@ -93,9 +131,11 @@ public class RepairController {
         Paginated<RepairDetailsDto> repairsList;
         try {
             repairsList = repairServiceImp.getRepairsList(page, size);
+
         } catch (RabbitMechanicException e) {
             // Since RabbitMechanicException exceptions are thrown by us, we just throw them
             throw e;
+
         } catch (Exception e) {
             // With all others exceptions we log them and throw a generic exception
             LOGGER.error("Failed to get repairs list", e);
@@ -120,13 +160,15 @@ public class RepairController {
         RepairDetailsDto repairDetailsDto;
         try {
             repairDetailsDto = repairServiceImp.updateRepairDetails(repairId, updateRepairDto);
+
         } catch (RabbitMechanicException e) {
             // Since RabbitMechanicException exceptions are thrown by us, we just throw them
             throw e;
+
         } catch (Exception e) {
             // With all others exceptions we log them and throw a generic exception
             LOGGER.error("Failed to update repair with id {} - {}", repairId, updateRepairDto, e);
-            throw new RabbitMechanicException(ErrorMessages.REPAIR_NOT_FOUND, e);
+            throw new RabbitMechanicException(ErrorMessages.OPERATION_FAILED, e);
         }
 
         LOGGER.info("Repair with id {} updated successfully. Retrieving updated data", repairId);
@@ -144,13 +186,15 @@ public class RepairController {
         LOGGER.info("Request to delete car with id {}", repairId);
         try {
             repairServiceImp.deleteRepair(repairId);
+
         } catch (RabbitMechanicException e) {
             // Since RabbitMechanicException exceptions are thrown by us, we just throw them
             throw e;
+
         } catch (Exception e) {
             // With all others exceptions we log them and throw a generic exception
             LOGGER.error("Failed to delete repair with id {}", repairId, e);
-            throw new RabbitMechanicException(ErrorMessages.REPAIR_NOT_FOUND, e);
+            throw new RabbitMechanicException(ErrorMessages.OPERATION_FAILED, e);
         }
 
         LOGGER.info("Repair with id {} deleted successfully", repairId);

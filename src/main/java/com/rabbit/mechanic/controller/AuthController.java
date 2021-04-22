@@ -41,13 +41,15 @@ public class AuthController {
         LoggedInDto loggedIn;
         try {
             loggedIn = authService.loginEmployee(credentials);
+
         } catch (RabbitMechanicException e) {
             // Since RabbitMechanicException exceptions are thrown by us, we just throw them
             throw e;
+
         } catch (Exception e) {
             // With all others exceptions we log them and throw a generic exception
             LOGGER.error("Failed to logging employee - {}", credentials, e);
-            throw new RabbitMechanicException(ErrorMessages.WRONG_CREDENTIALS, e);
+            throw new RabbitMechanicException(ErrorMessages.OPERATION_FAILED, e);
         }
 
         LOGGER.info("Employee id {}, username {} logged in successfully. Retrieving jwt token",

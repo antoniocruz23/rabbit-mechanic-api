@@ -61,7 +61,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             }
         }
 
-        // Allways call this in order to tell Spring Security to continue
+        // Always call this in order to tell Spring Security to continue
         filterChain.doFilter(httpServletRequest, httpServletResponse);
     }
 }

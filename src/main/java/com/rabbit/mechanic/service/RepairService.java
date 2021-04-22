@@ -28,6 +28,12 @@ public interface RepairService {
     RepairDetailsDto getRepairById(long repairId) throws RepairNotFoundException;
 
     /**
+     * Get Repairs List by status
+     * @return {@link RepairDetailsDto} the repairs obtained
+     */
+    Paginated<RepairDetailsDto> getRepairsListByStatus(int page, int size, boolean onlyActives);
+
+    /**
      * Get Repairs List
      * @return {@link RepairDetailsDto} the repairs obtained
      */

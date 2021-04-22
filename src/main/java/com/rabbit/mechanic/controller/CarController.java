@@ -10,6 +10,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -19,6 +20,8 @@ import javax.validation.Valid;
  */
 @RestController
 @RequestMapping("/cars")
+@PreAuthorize("@authorized.hasRole(\"RECEPTIONIST\") ||" +
+        "@authorized.hasRole(\"ADMIN\")")
 public class CarController {
 
     // Logger
@@ -41,13 +44,15 @@ public class CarController {
         CarDetailsDto carDetails;
         try {
             carDetails = carService.createCar(createCarDto);
+
         } catch (RabbitMechanicException e) {
             // Since RabbitMechanicException exceptions are thrown by us, we just throw them
             throw e;
+
         } catch (Exception e) {
             // With all others exceptions we log them and throw a generic exception
             LOGGER.error("Failed to created car - {}", createCarDto, e);
-            throw new RabbitMechanicException(ErrorMessages.CAR_ALREADY_EXISTS, e);
+            throw new RabbitMechanicException(ErrorMessages.OPERATION_FAILED, e);
         }
 
         LOGGER.info("Car created successfully. Retrieving created car with id {}", carDetails.getCarId());
@@ -60,19 +65,24 @@ public class CarController {
      * @return {@link CarDetailsDto} the car wanted and Ok httpStatus
      */
     @GetMapping("/{carId}")
+    @PreAuthorize("@authorized.hasRole(\"RECEPTIONIST\") ||" +
+            "@authorized.hasRole(\"MECHANIC\") ||" +
+            "@authorized.hasRole(\"ADMIN\")")
     public ResponseEntity<CarDetailsDto> getCarById(@PathVariable long carId) {
 
         LOGGER.info("Request to get car with id {}", carId);
         CarDetailsDto carDetails;
         try {
             carDetails = carService.getCarById(carId);
+
         } catch (RabbitMechanicException e) {
             // Since RabbitMechanicException exceptions are thrown by us, we just throw them
             throw e;
+
         } catch (Exception e) {
             // With all others exceptions we log them and throw a generic exception
             LOGGER.error("Failed to get car with id {}", carId, e);
-            throw new RabbitMechanicException(ErrorMessages.CAR_NOT_FOUND, e);
+            throw new RabbitMechanicException(ErrorMessages.OPERATION_FAILED, e);
         }
 
         LOGGER.info("Retrieving car with id - {}", carDetails.getCarId());
@@ -84,6 +94,9 @@ public class CarController {
      * @return {@link CarDetailsDto} list of all cars and Ok httpStatus
      */
     @GetMapping
+    @PreAuthorize("@authorized.hasRole(\"RECEPTIONIST\") ||" +
+                "@authorized.hasRole(\"MECHANIC\") ||" +
+            "@authorized.hasRole(\"ADMIN\")")
     public ResponseEntity<Paginated<CarDetailsDto>> getCarsList(@RequestParam(defaultValue = "0") int page,
                                                                 @RequestParam(defaultValue = "5") int size) {
 
@@ -91,9 +104,11 @@ public class CarController {
         Paginated<CarDetailsDto> carsList;
         try {
             carsList = carService.getCarsList(page, size);
+
         } catch (RabbitMechanicException e) {
             // Since RabbitMechanicException exceptions are thrown by us, we just throw them
             throw e;
+
         } catch (Exception e) {
             // With all others exceptions we log them and throw a generic exception
             LOGGER.error("Failed to get cars list", e);
@@ -118,13 +133,15 @@ public class CarController {
         CarDetailsDto carDetailsDto;
         try {
             carDetailsDto = carService.updateCarDetails(carId, updateCarDto);
+
         } catch (RabbitMechanicException e) {
             // Since RabbitMechanicException exceptions are thrown by us, we just throw them
             throw e;
+
         } catch (Exception e) {
             // With all others exceptions we log them and throw a generic exception
             LOGGER.error("Failed to update car with id {} - {}", carId, updateCarDto, e);
-            throw new RabbitMechanicException(ErrorMessages.CAR_NOT_FOUND, e);
+            throw new RabbitMechanicException(ErrorMessages.OPERATION_FAILED, e);
         }
 
         LOGGER.info("Car with id {} updated successfully. Retrieving updated data", carId);
@@ -142,13 +159,15 @@ public class CarController {
         LOGGER.info("Request to delete car with id {}", carId);
         try {
             carService.deleteCar(carId);
+
         } catch (RabbitMechanicException e) {
             // Since RabbitMechanicException exceptions are thrown by us, we just throw them
             throw e;
+
         } catch (Exception e) {
             // With all others exceptions we log them and throw a generic exception
             LOGGER.error("Failed to delete car with id {}", carId, e);
-            throw new RabbitMechanicException(ErrorMessages.CAR_NOT_FOUND, e);
+            throw new RabbitMechanicException(ErrorMessages.OPERATION_FAILED, e);
         }
 
         LOGGER.info("Car with id {} deleted successfully", carId);

@@ -147,8 +147,7 @@ public class EmployeeServiceImp implements EmployeeService {
         // Update data with employeeDetails received
         employeeEntity.setFirstName(updateEmployeeDto.getFirstName());
         employeeEntity.setLastName(updateEmployeeDto.getLastName());
-        employeeEntity.setUsername(updateEmployeeDto.getUsername());
-        employeeEntity.setRole(updateEmployeeDto.getRoles());
+        employeeEntity.setRole(updateEmployeeDto.getRole());
 
         // Save changes
         LOGGER.info("Saving updates from employee with id {}", employeeId);

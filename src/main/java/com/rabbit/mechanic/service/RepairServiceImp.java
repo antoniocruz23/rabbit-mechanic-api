@@ -18,7 +18,6 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -99,7 +98,44 @@ public class RepairServiceImp implements RepairService {
     }
 
     /**
-     * @see RepairService#getRepairsList(int, int)
+     * @see RepairService#getRepairsListByStatus(int, int, boolean)
+     */
+    @Override
+    public Paginated<RepairDetailsDto> getRepairsListByStatus(int page, int size, boolean onlyActives) {
+
+        // Get all repairs from database
+        LOGGER.debug("Getting all repairs from database");
+        Page<RepairEntity> repairList = null;
+
+        try {
+            repairList = repairRepository.findAllByStatus(onlyActives, PageRequest.of(page, size));
+
+        } catch (Exception e) {
+            LOGGER.error("Failed while getting all repairs from database", e);
+            throw new DataBaseCommunicationException(ErrorMessages.DATABASE_COMMUNICATION_ERROR, e);
+        }
+
+        // Convert list items from RepairEntity to RepairDetailsDto
+        LOGGER.debug("Convert list items from RepairEntity to RepairDetailsDto");
+        List<RepairDetailsDto> repairListResponse = new ArrayList<>();
+        for (RepairEntity repairEntity : repairList.getContent()) {
+            repairListResponse.add(RepairConverter.fromRepairEntityToRepairDetailsDto(repairEntity));
+        }
+
+        // Build custom paginated object
+        Paginated<RepairDetailsDto> results = new Paginated<>(
+                repairListResponse,
+                page,
+                repairListResponse.size(),
+                repairList.getTotalPages(),
+                repairList.getTotalElements());
+
+        // Return list of RepairDetailsDto
+        return results;
+    }
+
+    /**
+     * @see RepairService#getRepairsListByStatus(int, int, boolean)
      */
     @Override
     public Paginated<RepairDetailsDto> getRepairsList(int page, int size) {
@@ -109,7 +145,8 @@ public class RepairServiceImp implements RepairService {
         Page<RepairEntity> repairList = null;
 
         try {
-            repairList = repairRepository.findAll(PageRequest.of(page, size, Sort.by("repairId")));
+            repairList = repairRepository.findAll(PageRequest.of(page, size));
+
         } catch (Exception e) {
             LOGGER.error("Failed while getting all repairs from database", e);
             throw new DataBaseCommunicationException(ErrorMessages.DATABASE_COMMUNICATION_ERROR, e);
@@ -151,6 +188,7 @@ public class RepairServiceImp implements RepairService {
         // Update data with updateRepairDto received
         repairEntity.setRepairName(updateRepairDto.getRepairName());
         repairEntity.setRepairDescription(updateRepairDto.getRepairDescription());
+        repairEntity.setEndDate(updateRepairDto.getEndDate());
 
         // Save changes
         LOGGER.info("Saving updates from repair with id {}", repairId);

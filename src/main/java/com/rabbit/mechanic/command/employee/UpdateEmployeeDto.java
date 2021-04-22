@@ -8,7 +8,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 /**
- * CreateEmployeeDto used to store worker info when updated
+ * CreateEmployeeDto used to store employee info when updated
  */
 @Data
 @Builder
@@ -20,9 +20,6 @@ public class UpdateEmployeeDto {
     @NotBlank(message = "Must have last name")
     private String lastName;
 
-    @NotBlank(message = "Must have username")
-    private String username;
-
     @NotNull(message = "Must have role")
-    private EmployeeRoles roles;
+    private EmployeeRoles role;
 }
