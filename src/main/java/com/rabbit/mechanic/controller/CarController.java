@@ -19,7 +19,7 @@ import javax.validation.Valid;
  * Car Controller who provides endpoints
  */
 @RestController
-@RequestMapping("/cars")
+@RequestMapping("/api/cars")
 @PreAuthorize("@authorized.hasRole(\"RECEPTIONIST\") ||" +
         "@authorized.hasRole(\"ADMIN\")")
 public class CarController {

@@ -22,7 +22,7 @@ import static org.springframework.http.HttpStatus.OK;
  * User Employee who provides endpoints
  */
 @RestController
-@RequestMapping("/employees")
+@RequestMapping("/api/employees")
 @PreAuthorize("@authorized.hasRole(\"ADMIN\")")
 public class EmployeeController {
 

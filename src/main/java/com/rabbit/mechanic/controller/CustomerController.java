@@ -21,7 +21,7 @@ import static org.springframework.http.HttpStatus.OK;
  * Customer Controller who provides endpoints
  */
 @RestController
-@RequestMapping("/customers")
+@RequestMapping("/api/customers")
 @PreAuthorize("@authorized.hasRole(\"RECEPTIONIST\") ||" +
         "@authorized.hasRole(\"ADMIN\")")
 public class CustomerController {

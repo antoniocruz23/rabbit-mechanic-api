@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * The car entity
@@ -37,6 +38,6 @@ public class CarEntity {
     @Column(nullable = false, length = 8, unique = true)
     private String plate;
 
-    @OneToOne(mappedBy = "carEntity")
-    private RepairEntity repairs;
+    @OneToMany(mappedBy = "carEntity")
+    private List<RepairEntity> repairs;
 }

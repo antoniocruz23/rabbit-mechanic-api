@@ -21,7 +21,7 @@ import static org.springframework.http.HttpStatus.OK;
  * Repair Controller who provides endpoints
  */
 @RestController
-@RequestMapping("/repairs")
+@RequestMapping("/api/repairs")
 @PreAuthorize("@authorized.hasRole(\"MECHANIC\") ||" +
         "@authorized.hasRole(\"ADMIN\")")
 public class RepairController {

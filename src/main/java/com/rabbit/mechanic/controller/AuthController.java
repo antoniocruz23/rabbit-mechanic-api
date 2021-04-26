@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
  * REST controller responsible for authentication operations
  */
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/api/auth")
 public class AuthController {
 
     // Logger

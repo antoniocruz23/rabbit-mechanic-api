@@ -24,7 +24,7 @@ public class RepairEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long repairId;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "carId", nullable = false)
     private CarEntity carEntity;
 
