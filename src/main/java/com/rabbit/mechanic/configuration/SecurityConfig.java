@@ -1,9 +1,6 @@
 package com.rabbit.mechanic.configuration;
 
-import com.rabbit.mechanic.security.AuthorizationValidatorService;
-import com.rabbit.mechanic.security.EmployeeAuthenticationEntryPoint;
-import com.rabbit.mechanic.security.EmployeeAuthenticationProvider;
-import com.rabbit.mechanic.security.JwtAuthFilter;
+import com.rabbit.mechanic.security.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -43,10 +40,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling().authenticationEntryPoint(employeeAuthenticationEntryPoint)
                 .and()
                 .addFilterBefore(new JwtAuthFilter(employeeAuthenticationProvider), BasicAuthenticationFilter.class)
+                .addFilterBefore(new CookieAuthFilter(employeeAuthenticationProvider), JwtAuthFilter.class)
                 .csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests().antMatchers(HttpMethod.POST, "/api/auth/login").permitAll()
+                .antMatchers("/api/swagger-ui.html", "/api/swagger-ui/*", "/v3/api-docs",
+                        "/v3/api-docs/*", "/api/health").permitAll()
                 .anyRequest().authenticated();
 
     }

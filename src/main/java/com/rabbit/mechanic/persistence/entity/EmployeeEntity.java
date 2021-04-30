@@ -7,7 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.print.attribute.standard.RequestingUserName;
 
 /**
  * The employee entity
