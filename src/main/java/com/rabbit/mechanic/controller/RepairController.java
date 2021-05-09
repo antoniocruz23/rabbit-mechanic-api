@@ -97,40 +97,13 @@ public class RepairController {
      */
     @GetMapping("/status")
     public ResponseEntity<Paginated<RepairDetailsDto>> getRepairsListByStatus(@RequestParam(defaultValue = "0") int page,
-                                                                              @RequestParam(defaultValue = "5") int size,
+                                                                              @RequestParam(defaultValue = "20") int size,
                                                                               @RequestParam(name = "only-actives", defaultValue = "true") boolean onlyActives) {
 
         LOGGER.info("Request to get repairs list - page: {}, size: {}", page, size);
         Paginated<RepairDetailsDto> repairsList;
         try {
             repairsList = repairServiceImp.getRepairsListByStatus(page, size, onlyActives);
-
-        } catch (RabbitMechanicException e) {
-            // Since RabbitMechanicException exceptions are thrown by us, we just throw them
-            throw e;
-
-        } catch (Exception e) {
-            // With all others exceptions we log them and throw a generic exception
-            LOGGER.error("Failed to get repairs list", e);
-            throw new RabbitMechanicException(ErrorMessages.OPERATION_FAILED, e);
-        }
-
-        LOGGER.info("Retrieving repairs list");
-        return new ResponseEntity<>(repairsList, HttpStatus.OK);
-    }
-
-    /**
-     * Get Repairs List
-     * @return {@link RepairDetailsDto} list of all repairs and Ok httpStatus
-     */
-    @GetMapping
-    public ResponseEntity<Paginated<RepairDetailsDto>> getRepairsList(@RequestParam(defaultValue = "0") int page,
-                                                                      @RequestParam(defaultValue = "5") int size) {
-
-        LOGGER.info("Request to get repairs list - page: {}, size: {}", page, size);
-        Paginated<RepairDetailsDto> repairsList;
-        try {
-            repairsList = repairServiceImp.getRepairsList(page, size);
 
         } catch (RabbitMechanicException e) {
             // Since RabbitMechanicException exceptions are thrown by us, we just throw them

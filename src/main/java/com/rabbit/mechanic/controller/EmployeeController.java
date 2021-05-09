@@ -96,7 +96,7 @@ public class EmployeeController {
      */
     @GetMapping
     public ResponseEntity<Paginated<EmployeeDetailsDto>> getAllEmployees(@RequestParam(defaultValue = "0") int page,
-                                                                    @RequestParam(defaultValue = "5") int size) {
+                                                                    @RequestParam(defaultValue = "20") int size) {
 
         LOGGER.info("Request to get all employees");
         Paginated<EmployeeDetailsDto> employeeList;

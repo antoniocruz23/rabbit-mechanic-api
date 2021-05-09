@@ -94,7 +94,7 @@ public class CustomerController {
      */
     @GetMapping
     public ResponseEntity<Paginated<CustomerDetailsDto>> getCustomerList(@RequestParam(defaultValue = "0") int page,
-                                                                         @RequestParam(defaultValue = "5") int size) {
+                                                                         @RequestParam(defaultValue = "20") int size) {
 
         LOGGER.info("Request to get customers list - page: {}, size: {}", page, size);
         Paginated<CustomerDetailsDto> customersList;

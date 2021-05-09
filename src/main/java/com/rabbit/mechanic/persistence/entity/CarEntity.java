@@ -35,7 +35,7 @@ public class CarEntity {
     @Column(nullable = false)
     private String engineType;
 
-    @Column(nullable = false, length = 8, unique = true)
+    @Column(nullable = false, length = 10, unique = true)
     private String plate;
 
     @OneToMany(mappedBy = "carEntity")

@@ -98,7 +98,7 @@ public class CarController {
                 "@authorized.hasRole(\"MECHANIC\") ||" +
             "@authorized.hasRole(\"ADMIN\")")
     public ResponseEntity<Paginated<CarDetailsDto>> getCarsList(@RequestParam(defaultValue = "0") int page,
-                                                                @RequestParam(defaultValue = "5") int size) {
+                                                                @RequestParam(defaultValue = "20") int size) {
 
         LOGGER.info("Request to get cars list - page: {}, size: {}", page, size);
         Paginated<CarDetailsDto> carsList;
